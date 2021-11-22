@@ -1,0 +1,67 @@
+{% load static %}
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" href="img/favicon.png" type="image/x-icon">
+		<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
+		<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+		<title>About</title>
+	</head>
+	{% block content %}
+	<body>
+		<header>
+			
+		</header>
+		<section class="main">
+				{% for book in books %}
+				<div class="alignment">
+					<h1>Книги:</h1>		
+					<div class="books">
+						<ol>
+							<li>{{ book.author }}
+							{{ book.title }}
+							{{ book.date }}</li>
+						</ol>
+					</div>
+					<button class="btn_book" onclick="openForm()">Добавить книгу</button>
+					<form class="form_book">
+						<label>Автор</label>
+						<input type="text" name="author"/>
+					  	<label>Название</label>
+					  	<input type="text" name="title"/>
+					  	<label>Дата</label>
+					  	<input type="date" name="date"/>
+					  	<button type="submit">Отправить</button>
+					</form>
+					{% endfor %}
+					{% for course in courses %}
+					<h1>Курсы:</h1>
+					<div class="courses">
+						<ol>
+							<li>{{ course.place }}
+							{{ course.title }}
+							{{ course.date }}</li>
+						</ol>
+					</div>
+					<button class="btn_course" onclick="openForm2()">Добавить курс</button>
+					<form class="form_course">
+						<label>Платформа</label>
+						<input type="text" name="place"/>
+					  	<label>Название</label>
+					  	<input type="text" name="title"/>
+					  	<label>Дата</label>
+					  	<input type="date" name="date"/>
+					  	<button type="submit">Отправить</button>
+					</form>
+				</div>
+				{% endfor %}
+		</section>
+	</body>
+	{% endblock %}
+</html>
