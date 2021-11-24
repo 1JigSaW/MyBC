@@ -6,6 +6,7 @@ function openForm() {
     	form_book.style.display = 'block';
     	btn_book.style.display = 'none';
   	}
+  	window.scrollTo(0, 150);
 }
 function openForm2() {
 	let form_course = document.querySelector('.form_course');
@@ -15,4 +16,5 @@ function openForm2() {
     	form_course.style.display = 'block';
     	btn_course.style.display = 'none';
   	}
+  	window.scrollTo(0, 150);
 }

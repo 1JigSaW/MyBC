@@ -32,14 +32,13 @@
 					</div>
 					<button class="btn_book" onclick="openForm()">Добавить книгу</button>
 					<form class="form_book" name="form_book" method="POST">
-						<!-- <label class="first_label">Автор</label>
-						<input type="text" name="author" class="first_field" />
+						{% csrf_token %}
+						<label class="first_label">Автор</label>
+						{{ form_book.author }}
 					  	<label class="second_label">Название</label>
-					  	<input type="text" name="title" class="second_field"/>
+					  	{{ form_book.title }}
 					  	<label class="third_label">Дата</label>
-					  	<input type="date" name="date" class="third_field"/> -->
-					  	{% csrf_token %}
-					  	{{ form_book }}
+					  	{{ form_book.date }}
 					  	<button type="submit" name="btn_books">Отправить</button>
 					</form>
 					<h1>Курсы:</h1>
@@ -54,14 +53,13 @@
 					</div>
 					<button class="btn_course" onclick="openForm2()">Добавить курс</button>
 					<form class="form_course" name="form_course" method="POST">
-						<!-- <label class="first_label">Платформа</label>
-						<input type="text" name="place" class="first_field_2" />
+						{% csrf_token %}
+						<label class="first_label">Платформа</label>
+						{{ form_course.place }}
 					  	<label class="second_label">Название</label>
-					  	<input type="text" name="title" class="second_field_2"/>
+					  	{{ form_course.title }}
 					  	<label class="third_label">Дата</label>
-					  	<input type="date" name="date" class="third_field_2"/> -->
-					  	{% csrf_token %}
-					  	{{ form_course }}
+					  	{{ form_course.date }}
 					  	<button type="submit" name="btn_courses">Отправить</button>
 					</form>
 				</div>
