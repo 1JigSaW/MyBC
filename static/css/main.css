@@ -112,7 +112,28 @@ header {
 	display: block;
 }
 
-.first_field {
+.first_field, .second_field, .third_field {
+	height: 4%;
+	width: 23%;
 	border: 10px;
 	border-radius: 15px;
+	font-size: 70%;
+	padding-left: 1%;
+}
+
+.first_label {
+	margin-left: 2%;
+}
+
+.second_label, .third_label {
+	margin-left: 1%;
+}
+
+.first_field_2, .second_field_2, .third_field_2 {
+	height: 4%;
+	width: 21%;
+	border: 10px;
+	border-radius: 15px;
+	font-size: 70%;
+	padding-left: 1%;
 }
