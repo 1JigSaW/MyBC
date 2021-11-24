@@ -18,3 +18,9 @@ function openForm2() {
   	}
   	window.scrollTo(0, 150);
 }
+
+$( function()
+	{
+		$( "#datepicker_2" ).datepicker();
+		$( "#datepicker" ).datepicker();
+});

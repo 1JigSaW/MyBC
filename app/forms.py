@@ -1,8 +1,11 @@
+from django.forms.fields import DateField
 from django.forms import ModelForm
 from django import forms
 from app.models import Books, Courses
 
+
 class BooksForm(ModelForm):
+
 	class Meta:
 		model = Books
 		fields = '__all__'
@@ -15,9 +18,8 @@ class BooksForm(ModelForm):
 		self.fields['title'].widget = forms.TextInput(attrs={
 			'class': 'second_field',
 			})
-		self.fields['date'].widget = forms.DateInput(attrs={
-			'class': 'third_field',
-			})
+		self.fields['date'].widget = forms.DateInput(
+			attrs={'class': 'third_field', 'id': 'datepicker'})
 
 
 class CoursesForm(ModelForm):
@@ -33,6 +35,5 @@ class CoursesForm(ModelForm):
 		self.fields['title'].widget = forms.TextInput(attrs={
 			'class': 'second_field_2',
 			})
-		self.fields['date'].widget = forms.DateInput(attrs={
-			'class': 'third_field_2',
-			})
+		self.fields['date'].widget = forms.DateInput(
+			attrs={'class': 'third_field_2', 'id': 'datepicker_2'})
