@@ -29,10 +29,21 @@ $( function()
 function redact() {
 	let delete_posts = document.querySelectorAll('.delete_post');
 	let btn_redact = document.querySelector('.btn_redact');
-	for (let post of delete_posts) {
-		let actualDisplay = getComputedStyle(post).display;
-    	if (actualDisplay == 'none') {
-    		post.style.display = 'block';
-  		}
-  	}
+	if (btn_redact.textContent == 'Редактировать') {
+		btn_redact.textContent = 'Отмена'
+		for (let post of delete_posts) {
+			let actualDisplay = getComputedStyle(post).display;
+	    	if (actualDisplay == 'none') {
+	    		post.style.display = 'block';
+	  		}
+	  	}
+	} else {
+		btn_redact.textContent = 'Редактировать'
+		for (let post of delete_posts) {
+			let actualDisplay = getComputedStyle(post).display;
+	    	if (actualDisplay == 'block') {
+	    		post.style.display = 'none';
+	  		}
+	  	}
+	}
 }
