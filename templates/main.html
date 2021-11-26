@@ -31,7 +31,7 @@
 							{% for book in books %}
 								<form method="post">
     								{% csrf_token %}
-    								<button class="delete_post" name="delete_book"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
+    								<button class="delete_post" name="delete_book" value="{{ book.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
 								</form>
 								<li>{{ book.author }}
 								{{ book.title }}

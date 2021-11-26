@@ -16,10 +16,11 @@ def main(request):
 		if form_course.is_valid():
 			form_course = form_course.save()
 	if request.method == 'POST' and 'delete_book' in request.POST:
-		books.filter(id=id).delete()
+		delete_id = request.POST['delete_book']
+		Books.objects.filter(id=delete_id).delete()
 	if request.method == 'POST' and 'delete_course' in request.POST:
-		print(pk)
-		courses.filter(id=course.id).delete()
+		delete_id = request.POST['delete_course']
+		Courses.objects.filter(id=delete_id).delete()
 	return render(request, 'main.html', {'books': books,
 		'courses': courses, 'form_book': form_book,
 		'form_course': form_course})
