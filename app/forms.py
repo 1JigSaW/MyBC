@@ -37,3 +37,4 @@ class CoursesForm(ModelForm):
 			})
 		self.fields['date'].widget = forms.DateInput(
 			attrs={'class': 'third_field_2', 'id': 'datepicker_2'})
+

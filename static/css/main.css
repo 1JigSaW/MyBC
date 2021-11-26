@@ -152,6 +152,7 @@ header {
 
 @media screen and (max-width: 1301px) {
 	.first_field, .second_field, .third_field {
+		float: left;
 		height: 3%;
 		width: 100%;
 		border: 10px;
@@ -174,15 +175,44 @@ header {
 	}
 
 	.first_field_2, .second_field_2, .third_field_2 {
+		float: left;
 		height: 3%;
 		width: 100%;
 		border: 10px;
 		border-radius: 15px;
 		font-size: 50%;
 		padding-left: 1%;
+		margin-left: 5%;
 	}
 	.third_field_2 {
 		text-align: center;
 		padding-left: 0%;
 	}
+}
+
+.btn_redact {
+	display: block;
+	float: left;
+	border: 3%;
+	border-width: 1px;
+	border-color: white; 
+    border-style: solid;
+	font-size: 70%;
+	width: 10%;
+	height: 50%;
+	margin-top: 1%;
+	
+}
+
+.delete_img {
+	height: 60%;
+	width: 50%;
+}
+
+.delete_post {
+	margin-right: 4%;
+	float: left;
+	display: none;
+	height: 3%;
+	width: 3%;
 }

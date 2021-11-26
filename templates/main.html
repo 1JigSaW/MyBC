@@ -21,7 +21,7 @@
 	{% block content %}
 	<body>
 		<header>
-			
+			<button class="btn_redact" onclick="redact()">Редактировать</button>
 		</header>
 		<section class="main">
 				<div class="alignment">
@@ -29,6 +29,10 @@
 					<div class="books">
 						<ol>
 							{% for book in books %}
+								<form method="post">
+    								{% csrf_token %}
+    								<button class="delete_post" name="delete_book"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
+								</form>
 								<li>{{ book.author }}
 								{{ book.title }}
 								{{ book.date }}</li>
@@ -50,6 +54,10 @@
 					<div class="courses">
 						<ol>
 							{% for course in courses %}
+								<form method="post">
+    								{% csrf_token %}
+    								<button class="delete_post" name="delete_course" value="{{ course.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
+								</form>
 								<li>{{ course.place }}
 								{{ course.title }}
 								{{ course.date }}</li>

@@ -8,6 +8,7 @@ function openForm() {
   	}
   	window.scrollTo(0, 150);
 }
+
 function openForm2() {
 	let form_course = document.querySelector('.form_course');
 	let btn_course = document.querySelector('.btn_course');
@@ -16,7 +17,7 @@ function openForm2() {
     	form_course.style.display = 'block';
     	btn_course.style.display = 'none';
   	}
-  	window.scrollTo(0, 150);
+  	window.scrollTo(0, 1000);
 }
 
 $( function()
@@ -24,3 +25,14 @@ $( function()
 		$( "#datepicker_2" ).datepicker();
 		$( "#datepicker" ).datepicker();
 });
+
+function redact() {
+	let delete_posts = document.querySelectorAll('.delete_post');
+	let btn_redact = document.querySelector('.btn_redact');
+	for (let post of delete_posts) {
+		let actualDisplay = getComputedStyle(post).display;
+    	if (actualDisplay == 'none') {
+    		post.style.display = 'block';
+  		}
+  	}
+}
