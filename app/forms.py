@@ -47,16 +47,16 @@ class RegistrationForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
 
     def __init__(self, *args, **kwargs):
-        super(UsersRegistrationForm, self).__init__(*args, **kwargs)
+        super(RegistrationForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget = forms.TextInput(attrs={
-            'class': '',
+            'class': 'username_field',
             })
         self.fields['password1'].widget = forms.PasswordInput(attrs={
-            'class': '',
+            'class': 'password_field',
             })
         self.fields['email'].widget = forms.EmailInput(attrs={
-            'class': '',
+            'class': 'email_field',
             })
         self.fields['password2'].widget = forms.PasswordInput(attrs={
-            'class': '',
+            'class': 'password2_field',
             })
