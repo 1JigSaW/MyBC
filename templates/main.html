@@ -1,81 +1,65 @@
+{% extends "base.html" %}
 {% load static %}
+{% block title %}Registration{% endblock %}
 
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<link rel="icon" href="img/favicon.png" type="image/x-icon">
-		<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
-		<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-		<title>MyBC</title>
-	</head>
-	{% block content %}
-	<body>
-		<header>
-			<button id="redact" class="btn_redact" onclick="redact()">Редактировать</button>
-		</header>
-		<section class="main">
-				<div class="alignment">
-					<h1>Книги:</h1>		
-					<div class="books">
-						<ol>
-							{% for book in books %}
-								<form method="post">
-    								{% csrf_token %}
-    								<button class="delete_post" name="delete_book" value="{{ book.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
-								</form>
-								<li>{{ book.author }}
-								{{ book.title }}
-								{{ book.date }}</li>
-							{% endfor %}
-						</ol>
-					</div>
-					<button class="btn_book" onclick="openForm()">Добавить книгу</button>
-					<form class="form_book" name="form_book" method="POST">
-						{% csrf_token %}
-						<label class="first_label">Автор</label>
-						{{ form_book.author }}
-					  	<label class="second_label">Название</label>
-					  	{{ form_book.title }}
-					  	<label class="third_label">Дата</label>
-					  	{{ form_book.date }}
-					  	<button type="submit" name="btn_books">Отправить</button>
-					</form>
-					<h1>Курсы:</h1>
-					<div class="courses">
-						<ol>
-							{% for course in courses %}
-								<form method="post">
-    								{% csrf_token %}
-    								<button class="delete_post" name="delete_course" value="{{ course.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
-								</form>
-								<li>{{ course.place }}
-								{{ course.title }}
-								{{ course.date }}</li>
-							{% endfor %}
-						</ol>
-					</div>
-					<button class="btn_course" onclick="openForm2()">Добавить курс</button>
-					<form class="form_course" name="form_course" method="POST">
-						{% csrf_token %}
-						<label class="first_label">Платформа</label>
-						{{ form_course.place }}
-					  	<label class="second_label">Название</label>
-					  	{{ form_course.title }}
-					  	<label class="third_label">Дата</label>
-					  	{{ form_course.date }}
-					  	<button type="submit" name="btn_courses">Отправить</button>
-					</form>
+{% block content %}
+	<header>
+		<button id="redact" class="btn_redact" onclick="redact()">Редактировать</button>
+		<a href="{% url 'registration' %}"><button id="registration" class="btn_registration">Регистрация</button></a>
+		<button id="login" class="btn_login">Вход</button>
+	</header>
+	<section class="main">
+			<div class="alignment">
+				<h1>Книги:</h1>		
+				<div class="books">
+					<ol>
+						{% for book in books %}
+							<form method="post">
+								{% csrf_token %}
+								<button class="delete_post" name="delete_book" value="{{ book.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
+							</form>
+							<li>{{ book.author }}
+							{{ book.title }}
+							{{ book.date }}</li>
+						{% endfor %}
+					</ol>
 				</div>
-		</section>
-	</body>
-	{% endblock %}
-</html>
+				<button class="btn_book" onclick="openForm()">Добавить книгу</button>
+				<form class="form_book" name="form_book" method="POST">
+					{% csrf_token %}
+					<label class="first_label">Автор</label>
+					{{ form_book.author }}
+				  	<label class="second_label">Название</label>
+				  	{{ form_book.title }}
+				  	<label class="third_label">Дата</label>
+				  	{{ form_book.date }}
+				  	<button type="submit" name="btn_books">Отправить</button>
+				</form>
+				<h1>Курсы:</h1>
+				<div class="courses">
+					<ol>
+						{% for course in courses %}
+							<form method="post">
+								{% csrf_token %}
+								<button class="delete_post" name="delete_course" value="{{ course.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
+							</form>
+							<li>{{ course.place }}
+							{{ course.title }}
+							{{ course.date }}</li>
+						{% endfor %}
+					</ol>
+				</div>
+				<button class="btn_course" onclick="openForm2()">Добавить курс</button>
+				<form class="form_course" name="form_course" method="POST">
+					{% csrf_token %}
+					<label class="first_label">Платформа</label>
+					{{ form_course.place }}
+				  	<label class="second_label">Название</label>
+				  	{{ form_course.title }}
+				  	<label class="third_label">Дата</label>
+				  	{{ form_course.date }}
+				  	<button type="submit" name="btn_courses">Отправить</button>
+				</form>
+			</div>
+	</section>
+{% endblock %}

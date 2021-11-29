@@ -64,6 +64,36 @@ header {
 		height: 3%;
 		width: 3%;
 	}
+
+	.btn_registration {
+		display: block;
+		float: right;
+		border: 3%;
+		border-width: 1px;
+		border-color: white; 
+	    border-style: solid;
+		font-size: 60%;
+		width: 50px;
+		min-width: 80px;
+		height: 50%;
+		margin-top: 15px;
+		margin-left: 1px;
+	}
+
+	.btn_login {
+		display: block;
+		float: right;
+		border: 3%;
+		border-width: 1px;
+		border-color: white; 
+	    border-style: solid;
+		font-size: 60%;
+		width: 50px;
+		min-width: 50px;
+		height: 50%;
+		margin-top: 15px;
+	}
+
 }
 
 @media screen and (min-width: 501px) {
@@ -88,6 +118,35 @@ header {
 		display: none;
 		height: 3%;
 		width: 3%;
+	}
+
+	.btn_registration {
+		display: block;
+		float: right;
+		border: 3%;
+		border-width: 1px;
+		border-color: white; 
+	    border-style: solid;
+		font-size: 60%;
+		width: 110px;
+		min-width: 100px;
+		height: 50%;
+		margin-top: 15px;
+		margin-left: 1px;
+	}
+
+	.btn_login {
+		display: block;
+		float: right;
+		border: 3%;
+		border-width: 1px;
+		border-color: white; 
+	    border-style: solid;
+		font-size: 60%;
+		width: 30px;
+		min-width: 100px;
+		height: 50%;
+		margin-top: 15px;
 	}
 }
 
@@ -219,6 +278,7 @@ header {
 	margin-top: 15px;
 	
 }
+
 
 .delete_img {
 	margin-left: 5px;

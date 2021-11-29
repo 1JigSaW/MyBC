@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Courses, Books
 from .forms import CoursesForm, BooksForm
 
+@login_required
 def main(request):
 	form_book = BooksForm
 	form_course = CoursesForm
@@ -24,4 +26,16 @@ def main(request):
 	return render(request, 'main.html', {'books': books,
 		'courses': courses, 'form_book': form_book,
 		'form_course': form_course})
+
+def account(request, username):
+	books = Books.objects.all()
+	courses = Courses.objects.all()
+	return render(request, 'account.html', {'books': books,
+		'courses': courses})
+
+def registration(request):
+	# if request.user.is_authenticated:
+	# 	redirect(main)
+	form = RegistrationForm()
+	return render(request, 'registration.html', {'form': form})
 
