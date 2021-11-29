@@ -1,4 +1,6 @@
 from django.forms.fields import DateField
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django import forms
 from app.models import Books, Courses
@@ -38,3 +40,23 @@ class CoursesForm(ModelForm):
 		self.fields['date'].widget = forms.DateInput(
 			attrs={'class': 'third_field_2', 'id': 'datepicker_2'})
 
+class RegistrationForm(UserCreationForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+
+    def __init__(self, *args, **kwargs):
+        super(UsersRegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.TextInput(attrs={
+            'class': '',
+            })
+        self.fields['password1'].widget = forms.PasswordInput(attrs={
+            'class': '',
+            })
+        self.fields['email'].widget = forms.EmailInput(attrs={
+            'class': '',
+            })
+        self.fields['password2'].widget = forms.PasswordInput(attrs={
+            'class': '',
+            })

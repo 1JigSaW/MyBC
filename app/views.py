@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Courses, Books
-from .forms import CoursesForm, BooksForm
+from .forms import CoursesForm, BooksForm, RegistrationForm
 
 @login_required
 def main(request):
@@ -34,8 +34,6 @@ def account(request, username):
 		'courses': courses})
 
 def registration(request):
-	# if request.user.is_authenticated:
-	# 	redirect(main)
 	form = RegistrationForm()
 	return render(request, 'registration.html', {'form': form})
 

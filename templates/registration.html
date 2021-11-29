@@ -1,10 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Registration{% endblock %}
+
 {% block content %}
 <header>
-	<button id="redact" class="btn_redact" onclick="redact()">Редактировать</button>
 </header>
 <section class="main">
 	<div class="alignment">
-		
+		{{ form.username }}
+		{{ form.email }}
+		{{ form.password1 }}
+		{{ form.password2 }}
 	</div>
 </section>
 
