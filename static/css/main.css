@@ -57,6 +57,13 @@ header {
 		font-family: 'Philosopher', sans-serif;
 		color: #FFFFFF;
 	}
+
+	.delete_post {
+		margin-right: 4%;
+		display: none;
+		height: 3%;
+		width: 3%;
+	}
 }
 
 @media screen and (min-width: 501px) {
@@ -73,6 +80,14 @@ header {
 		font-size: 24px;
 		font-family: 'Philosopher', sans-serif;
 		color: #FFFFFF;
+	}
+
+	.delete_post {
+		margin-right: 4%;
+		float: left;
+		display: none;
+		height: 3%;
+		width: 3%;
 	}
 }
 
@@ -197,22 +212,26 @@ header {
 	border-width: 1px;
 	border-color: white; 
     border-style: solid;
-	font-size: 70%;
-	width: 10%;
+	font-size: 60%;
+	width: 130px;
+	min-width: 100px;
 	height: 50%;
-	margin-top: 1%;
+	margin-top: 15px;
 	
 }
 
 .delete_img {
-	height: 60%;
-	width: 50%;
+	margin-left: 5px;
+	height: 20px;
+	width: 20px;
+	margin-right: 30px;
 }
 
 .delete_post {
-	margin-right: 4%;
+	display: block;
 	float: left;
 	display: none;
-	height: 3%;
-	width: 3%;
+	height: 30px;
+	width: 30px;
+	margin-right: 40px;
 }
