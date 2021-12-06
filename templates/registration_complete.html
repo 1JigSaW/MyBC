@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Registration complete{% endblock %}
+
+{% block content %}
+<header>
+</header>
+<section class="main">
+	<div class="alignment">
+		<h1>Регистрация успешно выполнена</h1>
+		<h2>Войдите в систему</h2>
+		<a href="{% url 'login' %}"><button>Войти</button></a>
+	</div>
+</section>
+{% endblock %}

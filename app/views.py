@@ -34,6 +34,15 @@ def account(request, username):
 		'courses': courses})
 
 def registration(request):
+	if request.user.is_authenticated:
+		redirect('main')
+	if request.method == 'POST':
+		form = RegistrationForm(request.POST)
+		print('123')
+		if form.is_valid():
+			form = form.save()
+			print('1234')
+			return render(request, 'registration_complete.html', {'form': form})
 	form = RegistrationForm()
 	return render(request, 'registration.html', {'form': form})
 
