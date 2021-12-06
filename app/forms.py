@@ -1,5 +1,5 @@
 from django.forms.fields import DateField
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django import forms
@@ -42,21 +42,42 @@ class CoursesForm(ModelForm):
 
 class RegistrationForm(UserCreationForm):
 
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
+	class Meta:
+		model = User
+		fields = ('username', 'email', 'password1', 'password2')
 
-    def __init__(self, *args, **kwargs):
-        super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget = forms.TextInput(attrs={
-            'class': 'username_field',
-            })
-        self.fields['password1'].widget = forms.PasswordInput(attrs={
-            'class': 'password_field',
-            })
-        self.fields['email'].widget = forms.EmailInput(attrs={
-            'class': 'email_field',
-            })
-        self.fields['password2'].widget = forms.PasswordInput(attrs={
-            'class': 'password2_field',
-            })
+	def __init__(self, *args, **kwargs):
+		super(RegistrationForm, self).__init__(*args, **kwargs)
+		self.fields['username'].widget = forms.TextInput(attrs={
+			'class': 'username_field_form',
+			})
+		self.fields['password1'].widget = forms.PasswordInput(attrs={
+			'class': 'password_field_form',
+			})
+		self.fields['email'].widget = forms.EmailInput(attrs={
+			'class': 'email_field_form',
+			})
+		self.fields['password2'].widget = forms.PasswordInput(attrs={
+			'class': 'password2_field_form',
+			})
+
+
+class LoginForm(AuthenticationForm):
+
+	class Meta:
+		model = User
+		fields = ('username', 'password',)
+		labels = {
+			'username': ('Логин'),
+			'password': ('Пароль')
+		}
+
+	def __init__(self, *args, **kwargs):
+		super(LoginForm, self).__init__(*args, **kwargs)
+		self.fields['username'].widget = forms.TextInput(attrs={
+			'class': 'username_field_form',
+			})
+		self.fields['password'].widget = forms.PasswordInput(attrs={
+			'class': 'password_field_form',
+			})
+	

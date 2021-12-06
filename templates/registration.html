@@ -9,13 +9,6 @@
 	<div class="alignment">
 		<h1>Регистрация</h1>
 		<form method="POST" class="registration_form">{% csrf_token %}
-			{% if form.errors %}
-	   			{% for field in form %}
-	      			{% for error in field.errors %}
-	          			<h3 class="errors_password">{{ error|escape }}</h3>
-	      			{% endfor %}
-	   			{% endfor %}
-			{% endif %}
 			{% for message in messages %}
 			<p>{{message}}</p>
 			{% endfor %}
@@ -27,8 +20,15 @@
 			{{ form.password1 }}
 			<label class="label_password2">Повторите пароль</label>
 			{{ form.password2 }}
-			<button type="submit" class="btn_reg_submit">Войти</button>
+			<button type="submit" class="btn_reg_submit">Создать</button>
 		</form>
+		{% if form.errors %}
+	   		{% for field in form %}
+	      		{% for error in field.errors %}
+	          		<h3 class="errors_password">{{ error|escape }}</h3>
+	      		{% endfor %}
+	   		{% endfor %}
+		{% endif %}
 	</div>
 </section>
 {% endblock %}

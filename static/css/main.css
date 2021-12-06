@@ -31,7 +31,7 @@ li {
 	margin-right: 3%;
 }
 
-h1 {
+h1, h2 {
 	text-align: center;
 }
 
@@ -148,6 +148,20 @@ header {
 		height: 50%;
 		margin-top: 15px;
 	}
+
+	.btn_logout { 
+		display: block;
+		float: right;
+		border: 3%;
+		border-width: 1px;
+		border-color: white; 
+	    border-style: solid;
+		font-size: 60%;
+		width: 30px;
+		min-width: 100px;
+		height: 50%;
+		margin-top: 15px;
+	}
 }
 
 .main {
@@ -186,6 +200,7 @@ header {
 .btn_course {
 	display: block;
 }
+
 
 @media screen and (min-width: 1300px) {
 	.first_field, .second_field, .third_field {
@@ -284,6 +299,17 @@ header {
 	
 }
 
+.username_field {
+	padding-top: 20px;
+	border: 3%;
+	border-width: 1px;
+	border-color: white; 
+    border-style: solid;
+	font-size: 60%;
+	width: 130px;
+	min-width: 100px;
+	height: 50%;
+}
 
 .delete_img {
 	margin-left: 5px;
@@ -309,7 +335,7 @@ header {
 	position: relative;
 }
 
-.username_field, .password_field, .email_field, .password2_field {
+.username_field_form, .password_field_form, .email_field_form, .password2_field_form {
 	display: block;
 	height: 4%;
 	width: 60%;
@@ -320,7 +346,7 @@ header {
 	font-size: 70%;
 	padding-left: 1%;
 	text-align: center;
-	margin-bottom: 1%;
+	/*margin-bottom: 1%;*/
 }
 
 .btn_reg_submit {
