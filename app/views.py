@@ -78,5 +78,6 @@ def login_user(request):
 
 @login_required
 def logout_user(request):
+	prev_user = request.user
 	logout(request)
-	return redirect('main', username='wwwwww')
+	return redirect('main', username=str(prev_user))
