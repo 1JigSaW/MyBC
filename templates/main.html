@@ -4,40 +4,46 @@
 
 {% block content %}
 	<header>
-		<p class="username_block">{{ username }}</p>
+		{% if user_exist %}
+			<p class="username_block">{{ username }}</p>
+		{% endif %}
 		<a href="{% url 'registration' %}"><button id="registration" class="btn_registration">Регистрация</button></a>
 		<a href="{% url 'login' %}"><button id="login" class="btn_login">Вход</button></a>
 	</header>
 	<section class="main">
 			<div class="alignment">
-				<h1>Книги:</h1>		
-				<div class="books">
-					<ol>
-						{% if books %}
-							{% for book in books %}
-								<li>{{ book.author }}
-								{{ book.title }}
-								{{ book.date }}</li>
-							{% endfor %}
-						{% else %}
-							<p class="alert_bc">Пока нет ни одной пройденной книги</p>
-						{% endif %}
-					</ol>
-				</div>
-				<h1>Курсы:</h1>
-				<div class="courses">
-					<ol>
-						{% if courses %}
-							{% for course in courses %}
-								<li>{{ course.place }}
-								{{ course.title }}
-								{{ course.date }}</li>
-							{% endfor %}
-						{% else %}
-							<p class="alert_bc">Пока нет ни одного пройденного курса</p>
-						{% endif %}
-					</ol>
-				</div>
+				{% if user_exist %}
+					<h1>Книги:</h1>		
+					<div class="books">
+						<ol>
+							{% if books %}
+								{% for book in books %}
+									<li>{{ book.author }}
+									{{ book.title }}
+									{{ book.date }}</li>
+								{% endfor %}
+							{% else %}
+								<p class="alert_bc">Пока нет ни одной пройденной книги</p>
+							{% endif %}
+						</ol>
+					</div>
+					<h1>Курсы:</h1>
+					<div class="courses">
+						<ol>
+							{% if courses %}
+								{% for course in courses %}
+									<li>{{ course.place }}
+									{{ course.title }}
+									{{ course.date }}</li>
+								{% endfor %}
+							{% else %}
+								<p class="alert_bc">Пока нет ни одного пройденного курса</p>
+							{% endif %}
+						</ol>
+					</div>
+				{% else %}
+					<h2>Такого пользователя не существует</h2>
+				{% endif %}
 			</div>
 	</section>
 {% endblock %}

@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import logout, authenticate, login
 from .models import Courses, Books
 from .forms import CoursesForm, BooksForm, RegistrationForm, LoginForm
-from django.contrib.auth import logout, authenticate, login
 
 @login_required
 def account(request):
@@ -42,10 +43,11 @@ def account(request):
 		'form_course': form_course, 'username': username})
 
 def main(request, username):
+	user_exist = User.objects.filter(username=username).exists()
 	books = Books.objects.filter(user__username=username)
 	courses = Courses.objects.filter(user__username=username)
 	return render(request, 'main.html', {'books': books,
-		'courses': courses, 'username': username})
+		'courses': courses, 'username': username, 'user_exist': user_exist})
 
 def registration(request):
 	if request.user.is_authenticated:
