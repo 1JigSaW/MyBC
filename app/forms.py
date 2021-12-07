@@ -10,7 +10,7 @@ class BooksForm(ModelForm):
 
 	class Meta:
 		model = Books
-		fields = '__all__'
+		exclude = ('user',)
 
 	def __init__(self, *args, **kwargs):
 		super(BooksForm, self).__init__(*args, **kwargs)
@@ -27,7 +27,7 @@ class BooksForm(ModelForm):
 class CoursesForm(ModelForm):
 	class Meta:
 		model = Courses
-		fields = '__all__'
+		exclude = ('user',)
 
 	def __init__(self, *args, **kwargs):
 		super(CoursesForm, self).__init__(*args, **kwargs)

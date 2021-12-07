@@ -12,8 +12,7 @@
 			<div class="alignment">
 				<h1>Книги:</h1>		
 				<div class="books">
-					<ol>
-						{% for book in books %}
+					<ol>{% for book in books %}
 							<form method="post">
 								{% csrf_token %}
 								<button class="delete_post" name="delete_book" value="{{ book.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>

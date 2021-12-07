@@ -8,28 +8,39 @@ from django.contrib.auth import logout, authenticate, login
 def account(request):
 	form_book = BooksForm
 	form_course = CoursesForm
-	books = Books.objects.all()
-	courses = Courses.objects.all()
 	username = request.user
 	if request.method == 'POST' and 'btn_books' in request.POST:
 		form_book = BooksForm(request.POST)
 		if form_book.is_valid():
-			form_book = form_book.save()
+			form_book = form_book.save(commit=False)
+			form_book.user = request.user
+			form_book.save()
 	if request.method == 'POST' and 'btn_courses' in request.POST:
 		form_course = CoursesForm(request.POST)
 		if form_course.is_valid():
-			form_course = form_course.save()
+			form_course = form_course.save(commit=False)
+			form_course.user = request.user
+			form_course.save()
 	if request.method == 'POST' and 'delete_book' in request.POST:
 		delete_id = request.POST['delete_book']
+		print(delete_id)
 		Books.objects.filter(id=delete_id).delete()
 	if request.method == 'POST' and 'delete_course' in request.POST:
 		delete_id = request.POST['delete_course']
 		Courses.objects.filter(id=delete_id).delete()
+	try:
+		books = Books.objects.filter(user=request.user)
+	except Books.DoesNotExist:
+		books = None
+	try:
+		courses = Courses.objects.filter(user=request.user)
+	except Courses.DoesNotExist:
+		courses = None
 	return render(request, 'account.html', {'books': books,
 		'courses': courses, 'form_book': form_book,
 		'form_course': form_course, 'username': username})
 
-def main(request):
+def main(request, username='jigsaw'):
 	books = Books.objects.all()
 	courses = Courses.objects.all()
 	return render(request, 'main.html', {'books': books,
