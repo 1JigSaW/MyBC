@@ -40,9 +40,9 @@ def account(request):
 		'courses': courses, 'form_book': form_book,
 		'form_course': form_course, 'username': username})
 
-def main(request, username='jigsaw'):
-	books = Books.objects.all()
-	courses = Courses.objects.all()
+def main(request, username):
+	books = Books.objects.filter(user__username=username)
+	courses = Courses.objects.filter(user__username=username)
 	return render(request, 'main.html', {'books': books,
 		'courses': courses})
 
@@ -73,6 +73,7 @@ def login_user(request):
 	form = LoginForm()
 	return render(request, 'login.html', {'form': form})
 
+@login_required
 def logout_user(request):
 	logout(request)
-	return redirect('main')
+	return redirect('main', username='wwwwww')
