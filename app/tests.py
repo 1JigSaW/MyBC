@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model, authenticate
-from .models import Books
+from .models import Books, Courses
 from datetime import date, timedelta
 
 class SigninTest(TestCase):
@@ -38,18 +38,54 @@ class BooksTest(TestCase):
 	def tearDown(self):
 		self.user.delete()
 
-	def test_read_task(self):
+	def test_read_book(self):
 		self.assertEqual(self.book.user, self.user)
 		self.assertEqual(self.book.author, 'Томас Кормен')
 		self.assertEqual(self.book.title, 'Алгоритмы: построение и анализ')
 		self.assertEqual(self.book.date, self.timestamp + timedelta(days=1))
 
-	def test_update_task_description(self):
+	def test_update_book_author(self):
 		self.book.author = 'Чарльз Эрик Лейзерсон, Клиффорд Штайн'
 		self.book.save()
 		self.assertEqual(self.book.author, 'Чарльз Эрик Лейзерсон, Клиффорд Штайн')
 
-	def test_update_task_due(self):
+	def test_update_book_date(self):
 		self.book.date = self.timestamp + timedelta(days=2)
 		self.book.save()
 		self.assertEqual(self.book.date, self.timestamp + timedelta(days=2))
+
+
+class CoursesTest(TestCase):
+	def setUp(self):
+		self.user = get_user_model().objects.create_user(username='test', password='12test12', email='test@example.com')
+		self.user.save()
+		self.timestamp = date.today()
+		self.course = Courses(user=self.user,
+						 place='Stepik',
+						 title='Алгоритмы',
+						 date=self.timestamp + timedelta(days=1))
+		self.course.save()
+
+	def tearDown(self):
+		self.user.delete()
+
+	def test_read_course(self):
+		self.assertEqual(self.course.user, self.user)
+		self.assertEqual(self.course.place, 'Stepik')
+		self.assertEqual(self.course.title, 'Алгоритмы')
+		self.assertEqual(self.course.date, self.timestamp + timedelta(days=1))
+
+	def test_update_course_place(self):
+		self.course.author = 'Coursera'
+		self.course.save()
+		self.assertEqual(self.course.author, 'Coursera')
+
+	def test_wrong_update_course(self):
+		self.course.title = 'Selenium'
+		self.course.save()
+		self.assertNotEqual(self.course.title, 'Seleniumaaaa')
+
+	def test_update_course_date(self):
+		self.course.date = self.timestamp + timedelta(days=2)
+		self.course.save()
+		self.assertEqual(self.course.date, self.timestamp + timedelta(days=2))
