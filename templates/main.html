@@ -4,6 +4,7 @@
 
 {% block content %}
 	<header>
+		<p class="username_block">{{ username }}</p>
 		<a href="{% url 'registration' %}"><button id="registration" class="btn_registration">Регистрация</button></a>
 		<a href="{% url 'login' %}"><button id="login" class="btn_login">Вход</button></a>
 	</header>

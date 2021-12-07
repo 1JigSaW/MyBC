@@ -44,7 +44,7 @@ def main(request, username):
 	books = Books.objects.filter(user__username=username)
 	courses = Courses.objects.filter(user__username=username)
 	return render(request, 'main.html', {'books': books,
-		'courses': courses})
+		'courses': courses, 'username': username})
 
 def registration(request):
 	if request.user.is_authenticated:

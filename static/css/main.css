@@ -296,7 +296,18 @@ header {
 	min-width: 100px;
 	height: 50%;
 	margin-top: 15px;
-	
+}
+
+.username_block {
+	display: block;
+	float: left;
+	font-size: 60%;
+	width: 130px;
+	min-width: 100px;
+	height: 50%;
+	margin-top: 20px;
+	margin-left: 10px;
+	text-align: center;
 }
 
 .username_field {
