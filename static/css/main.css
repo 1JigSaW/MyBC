@@ -369,3 +369,10 @@ header {
 	font-size: 70%;
 	margin-bottom: 1%;
 }
+
+.alert_bc {
+	text-align: center;
+	width: 100%;
+	color: rgba(255, 255, 255, 0.3);
+	font-size: 25px;
+}

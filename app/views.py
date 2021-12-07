@@ -36,6 +36,7 @@ def account(request):
 		courses = Courses.objects.filter(user=request.user)
 	except Courses.DoesNotExist:
 		courses = None
+	print(courses)
 	return render(request, 'account.html', {'books': books,
 		'courses': courses, 'form_book': form_book,
 		'form_course': form_course, 'username': username})
