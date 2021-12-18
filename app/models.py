@@ -28,3 +28,29 @@ class Courses(models.Model):
 
 	def __str__(self):
 		return f'{self.title}'
+
+class Video(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	title = models.CharField(max_length=100)
+	link = models.TextField()
+	date = models.DateField(default=date.today)
+
+	class Meta:
+		verbose_name = 'Видео'
+		verbose_name_plural = 'Видео'
+
+	def __str__(self):
+		return f'{self.title}'
+
+class Article(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	title = models.CharField(max_length=100)
+	link = models.TextField()
+	date = models.DateField(default=date.today)
+
+	class Meta:
+		verbose_name = 'Статья'
+		verbose_name_plural = 'Статьи'
+
+	def __str__(self):
+		return f'{self.title}'

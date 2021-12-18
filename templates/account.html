@@ -8,6 +8,12 @@
 		<!-- <p class="username_field">{{ username }}</p> -->
 		<a href="{% url 'logout' %}"><button class="btn_logout">Выйти</button></a>
 	</header>
+	<div class="submodule">
+		<a href="{% url 'account' %}"><button class="switch_book">Книги</button></a>
+		<a href="{% url 'account' %}"><button class="switch_courses">Курсы</button></a>
+		<a href="{% url 'account' %}"><button class="switch_video">Видео</button></a>
+		<a href="{% url 'account' %}"><button class="switch_article">Статьи</button></a>
+	</div>
 	<section class="main">
 			<div class="alignment">
 				<h1>Книги:</h1>		
