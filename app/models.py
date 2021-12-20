@@ -29,7 +29,7 @@ class Courses(models.Model):
 	def __str__(self):
 		return f'{self.title}'
 
-class Video(models.Model):
+class Videos(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	title = models.CharField(max_length=100)
 	link = models.TextField()
@@ -42,7 +42,7 @@ class Video(models.Model):
 	def __str__(self):
 		return f'{self.title}'
 
-class Article(models.Model):
+class Articles(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	title = models.CharField(max_length=100)
 	link = models.TextField()

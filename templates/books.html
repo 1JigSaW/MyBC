@@ -11,9 +11,9 @@
 	<section class="subheader">
 		<div class="submodule">
 			<a href="{% url 'books' %}"><button class="switch_book">Книги</button></a>
-			<a href="{% url 'courses' %}"><button class="switch_course">Курсы</button></a>
-			<a href="{% url 'videos' %}"><button class="switch_video">Видео</button></a>
-			<a href="{% url 'articles' %}"><button class="switch_article">Статьи</button></a>
+			<a href="{% url 'courses' %}"><button class="switch_courses">Курсы</button></a>
+			<!-- <a href="{% url 'account' %}"><button class="switch_video">Видео</button></a> -->
+			<!-- <a href="{% url 'account' %}"><button class="switch_article">Статьи</button></a> -->
 		</div>
 	</section>
 	<section class="main">
@@ -45,34 +45,6 @@
 				  	<label class="third_label">Дата</label>
 				  	{{ form_book.date }}
 				  	<button type="submit" name="btn_books">Отправить</button>
-				</form>
-				<h1>Курсы:</h1>
-				<div class="courses">
-					<ol>{% if courses %}
-							{% for course in courses %}
-								<form method="post">
-									{% csrf_token %}
-									<button class="delete_post" name="delete_course" value="{{ course.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
-								</form>
-								<li>{{ course.place }}
-								{{ course.title }}
-								{{ course.date }}</li>
-							{% endfor %}
-						{% else %}
-							<p class="alert_bc">Пока нет ни одного пройденного курса</p>
-						{% endif %}
-					</ol>
-				</div>
-				<button class="btn_course" onclick="openForm2()">Добавить курс</button>
-				<form class="form_course" name="form_course" method="POST">
-					{% csrf_token %}
-					<label class="first_label">Платформа</label>
-					{{ form_course.place }}
-				  	<label class="second_label">Название</label>
-				  	{{ form_course.title }}
-				  	<label class="third_label">Дата</label>
-				  	{{ form_course.date }}
-				  	<button type="submit" name="btn_courses">Отправить</button>
 				</form>
 			</div>
 	</section>
