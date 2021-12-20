@@ -5,6 +5,7 @@ from django.contrib.auth import logout, authenticate, login
 from .models import Courses, Books, Videos, Articles
 from .forms import CoursesForm, BooksForm, VideosForm, ArticlesForm
 from .forms import RegistrationForm, LoginForm
+from .forms import WantCoursesForm, WantBooksForm, WantVideosForm, WantArticlesForm
 
 
 @login_required
@@ -67,6 +68,28 @@ def books(request):
 		'username': username})
 
 @login_required
+def want_books(request):
+	form_book = WantBooksForm
+	username = request.user
+	if request.method == 'POST' and 'btn_books' in request.POST:
+		form_book = WantBooksForm(request.POST)
+		if form_book.is_valid():
+			form_book = form_book.save(commit=False)
+			form_book.user = request.user
+			form_book.save()
+	if request.method == 'POST' and 'delete_book' in request.POST:
+		delete_id = request.POST['delete_book']
+		print(delete_id)
+		WantBooks.objects.filter(id=delete_id).delete()
+	try:
+		books = WantBooks.objects.filter(user=request.user)
+	except WantBooks.DoesNotExist:
+		books = None
+	return render(request, 'books.html', {'books': books,
+		'form_book': form_book,
+		'username': username})
+
+@login_required
 def courses(request):
 	form_course = CoursesForm
 	username = request.user
@@ -87,6 +110,26 @@ def courses(request):
 		'form_course': form_course, 'username': username})
 
 @login_required
+def want_courses(request):
+	form_course = WantCoursesForm
+	username = request.user
+	if request.method == 'POST' and 'btn_courses' in request.POST:
+		form_course = WantCoursesForm(request.POST)
+		if form_course.is_valid():
+			form_course = form_course.save(commit=False)
+			form_course.user = request.user
+			form_course.save()
+	if request.method == 'POST' and 'delete_course' in request.POST:
+		delete_id = request.POST['delete_course']
+		WantCourses.objects.filter(id=delete_id).delete()
+	try:
+		courses = WantCourses.objects.filter(user=request.user)
+	except Courses.DoesNotExist:
+		courses = None
+	return render(request, 'courses.html', {'courses': courses, 
+		'form_course': form_course, 'username': username})
+
+@login_required
 def videos(request):
 	form_video = VideosForm
 	username = request.user
@@ -101,7 +144,27 @@ def videos(request):
 		Videos.objects.filter(id=delete_id).delete()
 	try:
 		videos = Videos.objects.filter(user=request.user)
-	except Courses.DoesNotExist:
+	except Videos.DoesNotExist:
+		videos = None
+	return render(request, 'videos.html', {'videos': videos, 
+		'form_video': form_video, 'username': username})
+
+@login_required
+def videos(request):
+	form_video = WantVideosForm
+	username = request.user
+	if request.method == 'POST' and 'btn_video' in request.POST:
+		form_video = WantVideosForm(request.POST)
+		if form_course.is_valid():
+			form_video = form_video.save(commit=False)
+			form_video.user = request.user
+			form_video.save()
+	if request.method == 'POST' and 'delete_video' in request.POST:
+		delete_id = request.POST['delete_video']
+		WantVideos.objects.filter(id=delete_id).delete()
+	try:
+		videos = WantVideos.objects.filter(user=request.user)
+	except WantVideos.DoesNotExist:
 		videos = None
 	return render(request, 'videos.html', {'videos': videos, 
 		'form_video': form_video, 'username': username})
@@ -122,6 +185,26 @@ def articles(request):
 	try:
 		articles = Articles.objects.filter(user=request.user)
 	except Articles.DoesNotExist:
+		articles = None
+	return render(request, 'articles.html', {'articles': articles, 
+		'form_article': form_article, 'username': username})
+
+@login_required
+def articles(request):
+	form_article = WantArticlesForm
+	username = request.user
+	if request.method == 'POST' and 'btn_article' in request.POST:
+		form_article = WantArticlesForm(request.POST)
+		if form_article.is_valid():
+			form_article = form_article.save(commit=False)
+			form_article.user = request.user
+			form_article.save()
+	if request.method == 'POST' and 'delete_article' in request.POST:
+		delete_id = request.POST['delete_article']
+		WantArticles.objects.filter(id=delete_id).delete()
+	try:
+		articles = WantArticles.objects.filter(user=request.user)
+	except WantArticles.DoesNotExist:
 		articles = None
 	return render(request, 'articles.html', {'articles': articles, 
 		'form_article': form_article, 'username': username})

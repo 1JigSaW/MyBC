@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django import forms
 from app.models import Books, Courses, Videos, Articles
+from app.models import WantBooks, WantCourses, WantVideos, WantArticles
 
 
 class BooksForm(ModelForm):
@@ -23,6 +24,21 @@ class BooksForm(ModelForm):
 		self.fields['date'].widget = forms.DateInput(
 			attrs={'class': 'third_field', 'id': 'datepicker'})
 
+class WantBooksForm(ModelForm):
+
+	class Meta:
+		model = WantBooks
+		exclude = ('user',)
+
+	def __init__(self, *args, **kwargs):
+		super(WantBooksForm, self).__init__(*args, **kwargs)
+		self.fields['author'].widget = forms.TextInput(attrs={
+			'class': 'first_field',
+			})
+		self.fields['title'].widget = forms.TextInput(attrs={
+			'class': 'second_field',
+			})
+
 
 class CoursesForm(ModelForm):
 	class Meta:
@@ -39,6 +55,21 @@ class CoursesForm(ModelForm):
 			})
 		self.fields['date'].widget = forms.DateInput(
 			attrs={'class': 'third_field_2', 'id': 'datepicker_2'})
+
+
+class WantCoursesForm(ModelForm):
+	class Meta:
+		model = WantCourses
+		exclude = ('user',)
+
+	def __init__(self, *args, **kwargs):
+		super(WantCoursesForm, self).__init__(*args, **kwargs)
+		self.fields['place'].widget = forms.TextInput(attrs={
+			'class': 'first_field_2',
+			})
+		self.fields['title'].widget = forms.TextInput(attrs={
+			'class': 'second_field_2',
+			})
 
 
 class VideosForm(ModelForm):
@@ -58,6 +89,21 @@ class VideosForm(ModelForm):
 			attrs={'class': 'third_field_2', 'id': 'datepicker_2'})
 
 
+class WantVideosForm(ModelForm):
+	class Meta:
+		model = WantVideos
+		exclude = ('user',)
+
+	def __init__(self, *args, **kwargs):
+		super(WantVideosForm, self).__init__(*args, **kwargs)
+		self.fields['link'].widget = forms.TextInput(attrs={
+			'class': 'first_field_2',
+			})
+		self.fields['title'].widget = forms.TextInput(attrs={
+			'class': 'second_field_2',
+			})
+
+
 class ArticlesForm(ModelForm):
 	class Meta:
 		model = Articles
@@ -73,6 +119,21 @@ class ArticlesForm(ModelForm):
 			})
 		self.fields['date'].widget = forms.DateInput(
 			attrs={'class': 'third_field_2', 'id': 'datepicker_2'})
+
+
+class WantArticlesForm(ModelForm):
+	class Meta:
+		model = WantArticles
+		exclude = ('user',)
+
+	def __init__(self, *args, **kwargs):
+		super(WantArticlesForm, self).__init__(*args, **kwargs)
+		self.fields['link'].widget = forms.TextInput(attrs={
+			'class': 'first_field_2',
+			})
+		self.fields['title'].widget = forms.TextInput(attrs={
+			'class': 'second_field_2',
+			})
 
 
 class RegistrationForm(UserCreationForm):
