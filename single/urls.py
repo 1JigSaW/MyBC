@@ -27,5 +27,9 @@ urlpatterns = [
 	path('account/courses/', views.courses, name='courses'),
 	path('account/videos/', views.videos, name='videos'),
 	path('account/articles/', views.articles, name='articles'),
+	path('account/future_books/', views.want_books, name='future_books'),
+	path('account/future_courses/', views.want_courses, name='future_courses'),
+	path('account/future_videos/', views.want_videos, name='future_videos'),
+	path('account/future_articles/', views.want_articles, name='future_articles'),
 	path('<username>/', views.main, name='main'),
 ]

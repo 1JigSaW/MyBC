@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 from .models import Courses, Books, Videos, Articles
+from .models import WantCourses, WantBooks, WantVideos, WantArticles
 from .forms import CoursesForm, BooksForm, VideosForm, ArticlesForm
 from .forms import RegistrationForm, LoginForm
 from .forms import WantCoursesForm, WantBooksForm, WantVideosForm, WantArticlesForm
@@ -150,7 +151,7 @@ def videos(request):
 		'form_video': form_video, 'username': username})
 
 @login_required
-def videos(request):
+def want_videos(request):
 	form_want_video = WantVideosForm
 	username = request.user
 	if request.method == 'POST' and 'btn_video' in request.POST:

@@ -18,6 +18,10 @@
 	</section>
 	<section class="main">
 			<div class="alignment">
+				<div class="switch_future">
+					<a href="{% url 'future_courses' %}"><button class="switch_book">Хочу изучить</button></a>
+					<a href="{% url 'courses' %}"><button class="switch_book">Изучил</button></a>
+				</div>
 				<h1>Курсы, которые буду изучать:</h1>
 				<div class="courses">
 					<ol>{% if want_courses %}
