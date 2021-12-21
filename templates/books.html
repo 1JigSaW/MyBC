@@ -4,7 +4,6 @@
 
 {% block content %}
 	<header>
-		<button id="redact" class="btn_redact" onclick="redact()">Редактировать</button>
 		<!-- <p class="username_field">{{ username }}</p> -->
 		<a href="{% url 'logout' %}"><button class="btn_logout">Выйти</button></a>
 	</header>
@@ -18,6 +17,7 @@
 	</section>
 	<section class="main">
 			<div class="alignment">
+				<button id="redact" class="btn_redact" onclick="redact()">Редактировать</button>
 				<div class="switch_future">
 					<a href="{% url 'future_books' %}"><button class="switch_book">Хочу прочитать</button></a>
 					<a href="{% url 'books' %}"><button class="switch_book">Прочитал</button></a>
