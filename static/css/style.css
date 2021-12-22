@@ -13,5 +13,30 @@ body {
 
 .submodule, .alignment, .list-group-item {
 	background: #444444;
-	border-radius: 5px;
+	border-radius: 10px;
+}
+
+.font_btn {
+	font-size: 30px;
+}
+
+ol {
+	border-color: #ffffff;
+}
+
+table {
+	background: #ffffff;
+	border-radius: 10px;
+}
+
+.a{
+    border-bottom: none;
+}
+
+.btn {
+	background: #000000;
+}
+
+.table-hover {
+	color: #ffffff;
 }
