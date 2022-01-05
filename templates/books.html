@@ -83,23 +83,24 @@
 			<div class="container">
 				<div class="alignment">
 					<div class="btn-group p-3 w-100">
-						<button id="redact" class="btn btn-outline-light" onclick="redact()">Редактировать</button>
-						<button class="btn btn-outline-light" onclick="openForm()">Добавить книгу</button>
+						<button id="redact" class="btn btn-outline-light btn_redact" onclick="redact()">Редактировать</button>
+						<button class="btn btn-outline-light btn_book" onclick="openForm()">Добавить книгу</button>
 					</div>
-					<div class="p-3">
-						<form>
+					<div class="p-3 form_book">
+						<form method="POST">
 							{% csrf_token %}
 						  	<div class="row g-3 align-items-center">
-						    	<div class="form-group col-md-4 mb-3">
+						    	<div class="form-group col-md-4 mb-1 lh-3">
 						    		{{ form_book.author }}
 						      	</div>
-						      	<div class="form-group col-md-4 mb-3">
+						      	<div class="form-group col-md-4 mb-1">
 						      		{{ form_book.title }}
 						      	</div>
-						      	<div class="form-group col-md-4 mb-3">
+						      	<div class="form-group col-md-4 mb-1">
 						      		{{ form_book.date }}
 						    	</div>
 						  	</div>
+						  	<button type="submit" class="btn btn-lg btn-block btn-outline-light w-100 mt-2" name="btn_books">Отправить</button>
 						</form>
 					</div>
 					<h1 class="text-center text-white p-2">Книги</h1>
@@ -112,10 +113,6 @@
 					{% if books %}
 							<div class="p-3">
 								<table class="table text-break ml-3 table-hover text-dark border-bottom-0">
-									<form method="post">
-										{% csrf_token %}
-										<button class="delete_post" name="delete_book" value="{{ book.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
-									</form>
 									<thead>
 								    	<tr>
 								      		<th scope="col"><h5>№</h5></th>
@@ -131,11 +128,21 @@
 										      	<td><h5>{{ book.author }}</h5></td>
 										      	<td><h5>{{ book.title }}</h5></td>
 										      	<td><h5>{{ book.date }}</h5></td>
+										      	<td class="delete_post">
+										      		<form method="POST">
+														{% csrf_token %}
+														<li class="list-inline-item">
+															<button class="btn btn-danger btn-sm rounded-0 delete_back" type="submit" name="delete_book" value="{{ book.id }}"><i class="fa fa-trash"></i></button>
+														</li>
+													</form>
+												</td>
 										    </tr>
 									    {% endfor %}
 								  	</tbody>
 								</table>
 							</div>
+					{% else %}
+						<p class="alert_bc">Пока нет ни одной прочитанной книги</p>
 					{% endif %}
 				</div>
 			</div>

@@ -20,6 +20,7 @@ def account(request):
 			form_book = form_book.save(commit=False)
 			form_book.user = request.user
 			form_book.save()
+			form_book = BooksForm()
 	if request.method == 'POST' and 'btn_courses' in request.POST:
 		form_course = CoursesForm(request.POST)
 		if form_course.is_valid():
@@ -56,6 +57,7 @@ def books(request):
 			form_book = form_book.save(commit=False)
 			form_book.user = request.user
 			form_book.save()
+			form_book = BooksForm()
 	if request.method == 'POST' and 'delete_book' in request.POST:
 		delete_id = request.POST['delete_book']
 		print(delete_id)
@@ -78,6 +80,7 @@ def want_books(request):
 			form_want_book = form_want_book.save(commit=False)
 			form_want_book.user = request.user
 			form_want_book.save()
+			form_book = WantBooksForm()
 	if request.method == 'POST' and 'delete_book' in request.POST:
 		delete_id = request.POST['delete_book']
 		print(delete_id)
@@ -100,6 +103,7 @@ def courses(request):
 			form_course = form_course.save(commit=False)
 			form_course.user = request.user
 			form_course.save()
+			form_book = CoursesForm()
 	if request.method == 'POST' and 'delete_course' in request.POST:
 		delete_id = request.POST['delete_course']
 		Courses.objects.filter(id=delete_id).delete()
@@ -120,6 +124,7 @@ def want_courses(request):
 			form_want_course = form_want_course.save(commit=False)
 			form_want_course.user = request.user
 			form_want_course.save()
+			form_want_course = WantCoursesForm()
 	if request.method == 'POST' and 'delete_course' in request.POST:
 		delete_id = request.POST['delete_course']
 		WantCourses.objects.filter(id=delete_id).delete()
@@ -140,6 +145,7 @@ def videos(request):
 			form_video = form_video.save(commit=False)
 			form_video.user = request.user
 			form_video.save()
+			form_video = VideosForm()
 	if request.method == 'POST' and 'delete_video' in request.POST:
 		delete_id = request.POST['delete_video']
 		Videos.objects.filter(id=delete_id).delete()
@@ -160,6 +166,7 @@ def want_videos(request):
 			form_want_video = form_want_video.save(commit=False)
 			form_want_video.user = request.user
 			form_want_video.save()
+			form_want_video = WantVideosForm()
 	if request.method == 'POST' and 'delete_video' in request.POST:
 		delete_id = request.POST['delete_video']
 		WantVideos.objects.filter(id=delete_id).delete()
@@ -180,6 +187,7 @@ def articles(request):
 			form_article = form_article.save(commit=False)
 			form_article.user = request.user
 			form_article.save()
+			form_article = ArticlesForm()
 	if request.method == 'POST' and 'delete_article' in request.POST:
 		delete_id = request.POST['delete_article']
 		Articles.objects.filter(id=delete_id).delete()
@@ -200,6 +208,7 @@ def want_articles(request):
 			form_want_article = form_want_article.save(commit=False)
 			form_want_article.user = request.user
 			form_want_article.save()
+			form_want_article = WantArticlesForm()
 	if request.method == 'POST' and 'delete_article' in request.POST:
 		delete_id = request.POST['delete_article']
 		WantArticles.objects.filter(id=delete_id).delete()

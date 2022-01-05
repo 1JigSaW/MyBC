@@ -44,12 +44,18 @@ table {
 }
 
 .delete_post {
-	margin-right: 4%;
 	display: none;
-	height: 3%;
-	width: 3%;
 }
 
-/*.form-group {
-	display: inline-block;
-}*/
+.form-control {
+	border-radius: 10px;
+	font-size: 20px;
+}
+
+.form_book {
+	display: none;
+}
+
+.delete_back {
+	background: #dc3545;
+}
