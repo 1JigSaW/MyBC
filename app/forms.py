@@ -16,13 +16,13 @@ class BooksForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(BooksForm, self).__init__(*args, **kwargs)
 		self.fields['author'].widget = forms.TextInput(attrs={
-			'class': 'first_field',
+			'class': 'form-control', 'placeholder': 'Автор'
 			})
 		self.fields['title'].widget = forms.TextInput(attrs={
-			'class': 'second_field',
+			'class': 'form-control', 'placeholder': 'Название'
 			})
 		self.fields['date'].widget = forms.DateInput(
-			attrs={'class': 'third_field', 'id': 'datepicker'})
+			attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Дата'})
 
 class WantBooksForm(ModelForm):
 

@@ -29,14 +29,27 @@ table {
 	border-radius: 10px;
 }
 
-.a{
+.a {
     border-bottom: none;
 }
 
 .btn {
 	background: #000000;
+	border-radius: 10px;
+	font-size: 20px;
 }
 
 .table-hover {
 	color: #ffffff;
 }
+
+.delete_post {
+	margin-right: 4%;
+	display: none;
+	height: 3%;
+	width: 3%;
+}
+
+/*.form-group {
+	display: inline-block;
+}*/
