@@ -33,10 +33,10 @@ class WantBooksForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(WantBooksForm, self).__init__(*args, **kwargs)
 		self.fields['author'].widget = forms.TextInput(attrs={
-			'class': 'first_field',
+			'class': 'form-control', 'placeholder': 'Автор'
 			})
 		self.fields['title'].widget = forms.TextInput(attrs={
-			'class': 'second_field',
+			'class': 'form-control', 'placeholder': 'Автор'
 			})
 
 
@@ -48,13 +48,13 @@ class CoursesForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(CoursesForm, self).__init__(*args, **kwargs)
 		self.fields['place'].widget = forms.TextInput(attrs={
-			'class': 'first_field_2',
+			'class': 'form-control', 'placeholder': 'Платформа'
 			})
 		self.fields['title'].widget = forms.TextInput(attrs={
-			'class': 'second_field_2',
+			'class': 'form-control', 'placeholder': 'Название'
 			})
 		self.fields['date'].widget = forms.DateInput(
-			attrs={'class': 'third_field_2', 'id': 'datepicker_2'})
+			attrs={'class': 'form-control', 'placeholder': 'Дата', 'type': 'date'})
 
 
 class WantCoursesForm(ModelForm):
@@ -65,10 +65,10 @@ class WantCoursesForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(WantCoursesForm, self).__init__(*args, **kwargs)
 		self.fields['place'].widget = forms.TextInput(attrs={
-			'class': 'first_field_2',
+			'class': 'form-control', 'placeholder': 'Платформа'
 			})
 		self.fields['title'].widget = forms.TextInput(attrs={
-			'class': 'second_field_2',
+			'class': 'form-control', 'placeholder': 'Название'
 			})
 
 
@@ -112,13 +112,13 @@ class ArticlesForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(ArticlesForm, self).__init__(*args, **kwargs)
 		self.fields['link'].widget = forms.TextInput(attrs={
-			'class': 'first_field_2',
+			'class': 'form-control', 'placeholder': 'Ссылка'
 			})
 		self.fields['title'].widget = forms.TextInput(attrs={
-			'class': 'second_field_2',
+			'class': 'form-control', 'placeholder': 'Название'
 			})
 		self.fields['date'].widget = forms.DateInput(
-			attrs={'class': 'third_field_2', 'id': 'datepicker_2'})
+			attrs={'class': 'form-control', 'placeholder': 'Дата', 'type': 'date'})
 
 
 class WantArticlesForm(ModelForm):

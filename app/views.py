@@ -120,7 +120,7 @@ def want_courses(request):
 	username = request.user
 	if request.method == 'POST' and 'btn_courses' in request.POST:
 		form_want_course = WantCoursesForm(request.POST)
-		if form_course.is_valid():
+		if form_want_course.is_valid():
 			form_want_course = form_want_course.save(commit=False)
 			form_want_course.user = request.user
 			form_want_course.save()
@@ -139,7 +139,7 @@ def want_courses(request):
 def videos(request):
 	form_video = VideosForm
 	username = request.user
-	if request.method == 'POST' and 'btn_video' in request.POST:
+	if request.method == 'POST' and 'btn_videos' in request.POST:
 		form_video = VideosForm(request.POST)
 		if form_course.is_valid():
 			form_video = form_video.save(commit=False)
@@ -160,9 +160,9 @@ def videos(request):
 def want_videos(request):
 	form_want_video = WantVideosForm
 	username = request.user
-	if request.method == 'POST' and 'btn_video' in request.POST:
+	if request.method == 'POST' and 'btn_videos' in request.POST:
 		form_want_video = WantVideosForm(request.POST)
-		if form_course.is_valid():
+		if form_want_video.is_valid():
 			form_want_video = form_want_video.save(commit=False)
 			form_want_video.user = request.user
 			form_want_video.save()
@@ -181,7 +181,7 @@ def want_videos(request):
 def articles(request):
 	form_article = ArticlesForm
 	username = request.user
-	if request.method == 'POST' and 'btn_article' in request.POST:
+	if request.method == 'POST' and 'btn_articles' in request.POST:
 		form_article = ArticlesForm(request.POST)
 		if form_article.is_valid():
 			form_article = form_article.save(commit=False)
@@ -202,7 +202,7 @@ def articles(request):
 def want_articles(request):
 	form_want_article = WantArticlesForm
 	username = request.user
-	if request.method == 'POST' and 'btn_article' in request.POST:
+	if request.method == 'POST' and 'btn_articles' in request.POST:
 		form_want_article = WantArticlesForm(request.POST)
 		if form_want_article.is_valid():
 			form_want_article = form_want_article.save(commit=False)

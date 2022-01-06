@@ -43,15 +43,12 @@
 						<form method="POST">
 							{% csrf_token %}
 						  	<div class="row g-3 align-items-center">
-						    	<div class="form-group col-md-4 mb-1 lh-3">
+						    	<div class="form-group col-md-6 mb-1 lh-3">
 						    		{{ form_want_book.author }}
 						      	</div>
-						      	<div class="form-group col-md-4 mb-1">
+						      	<div class="form-group col-md-6 mb-1">
 						      		{{ form_want_book.title }}
 						      	</div>
-						      	<div class="form-group col-md-4 mb-1">
-						      		{{ form_want_book.date }}
-						    	</div>
 						  	</div>
 						  	<button type="submit" class="btn btn-lg btn-block btn-outline-light w-100 mt-2" name="btn_books">Отправить</button>
 						</form>
@@ -71,7 +68,6 @@
 								      		<th scope="col"><h5>№</h5></th>
 								      		<th scope="col"><h5>Автор</h5></th>
 								      		<th scope="col"><h5>Название</h5></th>
-								      		<th scope="col"><h5>Дата</h5></th>
 								    	</tr>
 								  	</thead>
 								  	<tbody>
@@ -80,7 +76,6 @@
 										      	<th scope="row"><h5>{{ forloop.counter }}</h5></th>
 										      	<td><h5>{{ want_book.author }}</h5></td>
 										      	<td><h5>{{ want_book.title }}</h5></td>
-										      	<td><h5>{{ want_book.date }}</h5></td>
 										      	<td class="delete_post">
 										      		<form method="POST">
 														{% csrf_token %}
@@ -95,7 +90,7 @@
 								</table>
 							</div>
 					{% else %}
-						<p class="h4 text-center text-white p-1">Пока нет ни одной прочитанной книги</p>
+						<p class="h4 text-center text-white p-1">Пока нет ни одной книги, которую вы хотите прочитать</p>
 					{% endif %}
 				</div>
 			</div>

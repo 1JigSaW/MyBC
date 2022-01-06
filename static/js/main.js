@@ -22,10 +22,29 @@ function openForm2() {
 	if (actualDisplay == 'none') {
     	form_course.style.display = 'block';
     	btn_course.textContent = 'Отмена';
+    	btn_course.style.background = '#dc3545';
   	}
   	else {
   		form_course.style.display = 'none';
   		btn_course.textContent = 'Добавить курс';
+  		btn_course.style.background = '';
+  	}
+  	// window.scrollTo(0, 1000);
+}
+
+function openForm3() {
+	let form_article = document.querySelector('.form_article');
+	let btn_article = document.querySelector('.btn_article');
+	let actualDisplay = getComputedStyle(form_article).display;
+	if (actualDisplay == 'none') {
+    	form_article.style.display = 'block';
+    	btn_article.textContent = 'Отмена';
+    	btn_article.style.background = '#dc3545';
+  	}
+  	else {
+  		form_article.style.display = 'none';
+  		btn_article.textContent = 'Добавить статью';
+  		btn_article.style.background = '';
   	}
   	// window.scrollTo(0, 1000);
 }
