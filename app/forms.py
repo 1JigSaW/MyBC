@@ -80,13 +80,13 @@ class VideosForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(VideosForm, self).__init__(*args, **kwargs)
 		self.fields['link'].widget = forms.TextInput(attrs={
-			'class': 'first_field_2',
+			'class': 'form-control', 'placeholder': 'Ссылка'
 			})
 		self.fields['title'].widget = forms.TextInput(attrs={
-			'class': 'second_field_2',
+			'class': 'form-control', 'placeholder': 'Название',
 			})
 		self.fields['date'].widget = forms.DateInput(
-			attrs={'class': 'third_field_2', 'id': 'datepicker_2'})
+			attrs={'class': 'form-control', 'placeholder': 'Дата', 'type': 'date'})
 
 
 class WantVideosForm(ModelForm):
@@ -97,10 +97,10 @@ class WantVideosForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(WantVideosForm, self).__init__(*args, **kwargs)
 		self.fields['link'].widget = forms.TextInput(attrs={
-			'class': 'first_field_2',
+			'class': 'form-control', 'placeholder': 'Ссылка',
 			})
 		self.fields['title'].widget = forms.TextInput(attrs={
-			'class': 'second_field_2',
+			'class': 'form-control', 'placeholder': 'Название',
 			})
 
 
@@ -129,10 +129,10 @@ class WantArticlesForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(WantArticlesForm, self).__init__(*args, **kwargs)
 		self.fields['link'].widget = forms.TextInput(attrs={
-			'class': 'first_field_2',
+			'class': 'form-control', 'placeholder': 'Ссылка'
 			})
 		self.fields['title'].widget = forms.TextInput(attrs={
-			'class': 'second_field_2',
+			'class': 'form-control', 'placeholder': 'Название'
 			})
 
 

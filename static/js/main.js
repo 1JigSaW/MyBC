@@ -49,6 +49,23 @@ function openForm3() {
   	// window.scrollTo(0, 1000);
 }
 
+function openForm4() {
+	let form_video = document.querySelector('.form_video');
+	let btn_video = document.querySelector('.btn_video');
+	let actualDisplay = getComputedStyle(form_video).display;
+	if (actualDisplay == 'none') {
+    	form_video.style.display = 'block';
+    	btn_video.textContent = 'Отмена';
+    	btn_video.style.background = '#dc3545';
+  	}
+  	else {
+  		form_video.style.display = 'none';
+  		btn_video.textContent = 'Добавить статью';
+  		btn_video.style.background = '';
+  	}
+  	// window.scrollTo(0, 1000);
+}
+
 $( function()
 	{
 		$( "#datepicker_2" ).datepicker();

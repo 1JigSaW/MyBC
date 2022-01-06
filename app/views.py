@@ -141,7 +141,7 @@ def videos(request):
 	username = request.user
 	if request.method == 'POST' and 'btn_videos' in request.POST:
 		form_video = VideosForm(request.POST)
-		if form_course.is_valid():
+		if form_video.is_valid():
 			form_video = form_video.save(commit=False)
 			form_video.user = request.user
 			form_video.save()
