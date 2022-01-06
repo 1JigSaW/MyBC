@@ -3,9 +3,6 @@
 {% block title %}MyBC{% endblock %}
 
 {% block content %}
-	<!-- <header>
-		<a href="{% url 'logout' %}"><button class="btn_logout">Выйти</button></a>
-	</header> -->
 	<header>
 		<nav class="navbar navbar-dark">
 		  	<div class="container-fluid">
@@ -15,20 +12,13 @@
 			      	<button class="btn btn-outline-light" type="submit">Поиск</button>
 			    </form>
 		    	<div class="text-end">
-          			<a href="" type="button" class="btn btn-warning me-2">Login</a>
-          			<a href="" type="button" class="btn btn-warning">Sign-up</a>
+          			<!-- <a href="{% url 'login' %}" type="button" class="btn btn-warning me-2">Login</a>
+          			<a href="{% url 'registration' %}" type="button" class="btn btn-warning">Sign-up</a> -->
+          			<a href="{% url 'logout' %}" type="button" class="btn btn-outline-danger">Выйти</a>
         		</div>
 		  	</div>
 		</nav>
 	</header>	
-	<!-- <section class="subheader">
-		<div class="submodule">
-			<a href="{% url 'books' %}"><button class="switch_book">Книги</button></a>
-			<a href="{% url 'courses' %}"><button class="switch_course">Курсы</button></a>
-			<a href="{% url 'videos' %}"><button class="switch_video">Видео</button></a>
-			<a href="{% url 'articles' %}"><button class="switch_article">Статьи</button></a>
-		</div>
-	</section> -->
 	<main>
 		<section class="subheader">
 			<div class="container">
@@ -103,7 +93,7 @@
 						  	<button type="submit" class="btn btn-lg btn-block btn-outline-light w-100 mt-2" name="btn_books">Отправить</button>
 						</form>
 					</div>
-					<h1 class="text-center text-white p-2">Книги</h1>
+					<h1 class="text-center text-white p-2">Прочитанные книги:</h1>
 					<div class="text-center">
 						<div class="btn-group p-3 w-40">
 							<a href="{% url 'books' %}" class="btn btn-outline-light active">Прочитанные</a>

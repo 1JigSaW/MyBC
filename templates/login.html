@@ -1,31 +1,51 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Authorization{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
 <header>
-	<a href="{% url 'registration' %}"><button id="registration" class="btn_registration">Регистрация</button></a>
+	<nav class="navbar navbar-dark">
+	  	<div class="container-fluid">
+	    	<a class="navbar-brand flex-grow-1">MyBC</a>
+	    	<form class="d-flex me-3">
+		      	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		      	<button class="btn btn-outline-light" type="submit">Поиск</button>
+		    </form>
+	    	<div class="text-end">
+      			<!-- <a href="{% url 'login' %}" type="button" class="btn btn-warning me-2">Login</a> -->
+      			<a href="{% url 'registration' %}" type="button" class="btn btn-outline-light">Регистрация</a>
+      			<!-- <a href="{% url 'logout' %}" type="button" class="btn btn-outline-danger">Выйти</a> -->
+    		</div>
+	  	</div>
+	</nav>
 </header>
-<section class="main">
-	<div class="alignment">
-		<h1>Авторизация</h1>
-		<form method="POST" class="registration_form">{% csrf_token %}
-			{% if form.errors %}
-	   			{% for field in form %}
-	      			{% for error in field.errors %}
-	          			<h3 class="errors_password">{{ error|escape }}</h3>
-	      			{% endfor %}
-	   			{% endfor %}
-			{% endif %}
-			{% for message in messages %}
-			<p>{{message}}</p>
-			{% endfor %}
-			<label class="label_username">Имя пользователя</label>
-			{{ form.username }}
-			<label class="label_password">Пароль</label>
-			{{ form.password }}
-			<button type="submit" class="btn_reg_submit">Войти</button>
-		</form>
+<section class="common_field">
+	<div class="container">
+		<div class="alignment mt-3 text-center">
+			<h1 class="text-center text-white p-2">Авторизация</h1>
+			<form method="POST">
+				{% csrf_token %}
+				{% if form.errors %}
+	   				{% for field in form %}
+	      				{% for error in field.errors %}
+	          				<h3 class="errors_password">{{ error|escape }}</h3>
+	      				{% endfor %}
+	   				{% endfor %}
+				{% endif %}
+				{% for message in messages %}
+					<p>{{message}}</p>
+				{% endfor %}
+			 	<div class="form-group w-50 offset-3 h5">
+			    	<label class="text-white p-2" for="Login">Логин</label>
+			    	{{ form.username }}
+			  	</div>
+			  	<div class="form-group w-50 offset-3 h5">
+			    	<label class="text-white p-2" for="Password">Пароль</label>
+			    	{{ form.password }}
+			  	</div>
+			  	<button type="submit" class="btn btn-outline-light m-3 w-25">Войти</button>
+			</form>
+		</div>
 	</div>
 </section>
 {% endblock %}

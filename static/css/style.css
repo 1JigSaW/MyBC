@@ -59,3 +59,17 @@ table {
 .delete_back {
 	background: #dc3545;
 }
+
+.login_field {
+	/*display: block;
+	height: 4%;
+	width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
+	border: 10px;
+	border-radius: 15px;
+	font-size: 70%;
+	padding-left: 1%;
+	text-align: center;*/
+}
+

@@ -4,32 +4,64 @@
 
 {% block content %}
 <header>
-	<a href="{% url 'login' %}"><button id="login" class="btn_login">Вход</button></a>
+	<nav class="navbar navbar-dark">
+	  	<div class="container-fluid">
+	    	<a class="navbar-brand flex-grow-1">MyBC</a>
+	    	<form class="d-flex me-3">
+		      	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		      	<button class="btn btn-outline-light" type="submit">Поиск</button>
+		    </form>
+	    	<div class="text-end">
+      			<a href="{% url 'login' %}" type="button" class="btn btn-outline-light">Войти</a>
+      			<!-- <a href="{% url 'registration' %}" type="button" class="btn btn-outline-light">Регистрация</a> -->
+      			<!-- <a href="{% url 'logout' %}" type="button" class="btn btn-outline-danger">Выйти</a> -->
+    		</div>
+	  	</div>
+	</nav>
 </header>
-<section class="main">
-	<div class="alignment">
-		<h1>Регистрация</h1>
-		<form method="POST" class="registration_form">{% csrf_token %}
-			{% for message in messages %}
-			<p>{{message}}</p>
-			{% endfor %}
-			<label class="label_username">Имя пользователя</label>
-			{{ form.username }}
-			<label class="label_email">Email</label>
-			{{ form.email }}
-			<label class="label_password">Пароль</label>
-			{{ form.password1 }}
-			<label class="label_password2">Повторите пароль</label>
-			{{ form.password2 }}
-			<button type="submit" class="btn_reg_submit">Создать</button>
-		</form>
-		{% if form.errors %}
-	   		{% for field in form %}
-	      		{% for error in field.errors %}
-	          		<h3 class="errors_password">{{ error|escape }}</h3>
-	      		{% endfor %}
-	   		{% endfor %}
-		{% endif %}
+<section class="common_field">
+	<div class="container">
+		<div class="alignment mt-3 text-center">
+			<h1 class="text-center text-white p-2">Регистрация</h1>
+			<form method="POST">{% csrf_token %}
+				{% for message in messages %}
+				<p>{{message}}</p>
+				{% endfor %}
+				<!-- <label class="label_username">Имя пользователя</label>
+				{{ form.username }}
+				<label class="label_email">Email</label>
+				{{ form.email }}
+				<label class="label_password">Пароль</label>
+				{{ form.password1 }}
+				<label class="label_password2">Повторите пароль</label>
+				{{ form.password2 }}
+				<button type="submit" class="btn_reg_submit">Создать</button> -->
+				<div class="form-group w-50 offset-3 h5">
+			    	<label class="text-white p-2" for="Login">Логин</label>
+			    	{{ form.username }}
+			  	</div>
+			  	<div class="form-group w-50 offset-3 h5">
+			    	<label class="text-white p-2" for="Email">Email</label>
+			    	{{ form.email }}
+			  	</div>
+			  	<div class="form-group w-50 offset-3 h5">
+			    	<label class="text-white p-2" for="Password1">Пароль</label>
+			    	{{ form.password1 }}
+			  	</div>
+			  	<div class="form-group w-50 offset-3 h5">
+			    	<label class="text-white p-2" for="Password2">Повторите пароль</label>
+			    	{{ form.password2 }}
+			  	</div>
+			  	<button type="submit" class="btn btn-outline-light m-3 w-25">Регистрация</button>
+			</form>
+			{% if form.errors %}
+		   		{% for field in form %}
+		      		{% for error in field.errors %}
+		          		<h3 class="errors_password">{{ error|escape }}</h3>
+		      		{% endfor %}
+		   		{% endfor %}
+			{% endif %}
+		</div>
 	</div>
 </section>
 {% endblock %}

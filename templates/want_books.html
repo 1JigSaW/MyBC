@@ -3,50 +3,102 @@
 {% block title %}MyBC{% endblock %}
 
 {% block content %}
-	<header>
-		<button id="redact" class="btn_redact" onclick="redact()">Редактировать</button>
-		<!-- <p class="username_field">{{ username }}</p> -->
-		<a href="{% url 'logout' %}"><button class="btn_logout">Выйти</button></a>
-	</header>
+<header>
+	<nav class="navbar navbar-dark">
+	  	<div class="container-fluid">
+	    	<a class="navbar-brand flex-grow-1">MyBC</a>
+	    	<form class="d-flex me-3">
+		      	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		      	<button class="btn btn-outline-light" type="submit">Поиск</button>
+		    </form>
+	    	<div class="text-end">
+      			<!-- <a href="{% url 'login' %}" type="button" class="btn btn-warning me-2">Login</a>
+      			<a href="{% url 'registration' %}" type="button" class="btn btn-warning">Sign-up</a> -->
+      			<a href="{% url 'logout' %}" type="button" class="btn btn-outline-danger">Выйти</a>
+    		</div>
+	  	</div>
+	</nav>
+</header>
+<main>
 	<section class="subheader">
-		<div class="submodule">
-			<a href="{% url 'books' %}"><button class="switch_book">Книги</button></a>
-			<a href="{% url 'courses' %}"><button class="switch_course">Курсы</button></a>
-			<a href="{% url 'videos' %}"><button class="switch_video">Видео</button></a>
-			<a href="{% url 'articles' %}"><button class="switch_article">Статьи</button></a>
+		<div class="container">
+			<div class="submodule mt-3 mb-2">
+				<div class="btn-group w-100 p-3">
+					<a href="{% url 'books' %}" class="btn btn-outline-light p-3 active" aria-current="page">Книги</a>
+					<a href="{% url 'courses' %}" class="btn btn-outline-light p-3 ">Курсы</a>
+					<a href="{% url 'articles' %}" class="btn btn-outline-light p-3" >Статьи</a>
+					<a href="{% url 'videos' %}" class="btn btn-outline-light p-3">Видео</a>
+				</div>
+			</div>
 		</div>
 	</section>
-	<section class="main">
-			<div class="alignment">
-				<div class="switch_future">
-					<a href="{% url 'future_books' %}"><button class="switch_book">Хочу прочитать</button></a>
-					<a href="{% url 'books' %}"><button class="switch_book">Прочитал</button></a>
-				</div>
-				<h1>Книги, которые буду читать:</h1>		
-				<div class="books">
+	<section class="common_field">
+			<div class="container">
+				<div class="alignment">
+					<div class="btn-group p-3 w-100">
+						<button id="redact" class="btn btn-outline-light btn_redact" onclick="redact()">Редактировать</button>
+						<button class="btn btn-outline-light btn_book" onclick="openForm()">Добавить книгу</button>
+					</div>
+					<div class="p-3 form_book">
+						<form method="POST">
+							{% csrf_token %}
+						  	<div class="row g-3 align-items-center">
+						    	<div class="form-group col-md-4 mb-1 lh-3">
+						    		{{ form_want_book.author }}
+						      	</div>
+						      	<div class="form-group col-md-4 mb-1">
+						      		{{ form_want_book.title }}
+						      	</div>
+						      	<div class="form-group col-md-4 mb-1">
+						      		{{ form_want_book.date }}
+						    	</div>
+						  	</div>
+						  	<button type="submit" class="btn btn-lg btn-block btn-outline-light w-100 mt-2" name="btn_books">Отправить</button>
+						</form>
+					</div>
+					<h1 class="text-center text-white p-2">Книги, которые буду читать:</h1>
+					<div class="text-center">
+						<div class="btn-group p-3 w-40">
+							<a href="{% url 'books' %}" class="btn btn-outline-light">Прочитанные</a>
+							<a href="{% url 'future_books' %}" class="btn btn-outline-light active">Хочу прочитать</a>
+						</div>
+					</div>
 					{% if want_books %}
-						<ol>{% for want_book in want_books %}
-								<form method="post">
-									{% csrf_token %}
-									<button class="delete_post" name="delete_book" value="{{ want_book.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
-								</form>
-								<li>{{ want_book.author }}
-								{{ want_book.title }}</li>
-							{% endfor %}
-						</ol>
+							<div class="p-3">
+								<table class="table text-break ml-3 table-hover text-dark border-bottom-0">
+									<thead>
+								    	<tr>
+								      		<th scope="col"><h5>№</h5></th>
+								      		<th scope="col"><h5>Автор</h5></th>
+								      		<th scope="col"><h5>Название</h5></th>
+								      		<th scope="col"><h5>Дата</h5></th>
+								    	</tr>
+								  	</thead>
+								  	<tbody>
+								  		{% for want_book in want_books %}
+										    <tr>
+										      	<th scope="row"><h5>{{ forloop.counter }}</h5></th>
+										      	<td><h5>{{ want_book.author }}</h5></td>
+										      	<td><h5>{{ want_book.title }}</h5></td>
+										      	<td><h5>{{ want_book.date }}</h5></td>
+										      	<td class="delete_post">
+										      		<form method="POST">
+														{% csrf_token %}
+														<li class="list-inline-item">
+															<button class="btn btn-danger btn-sm rounded-0 delete_back" type="submit" name="delete_book" value="{{ want_book.id }}"><i class="fa fa-trash"></i></button>
+														</li>
+													</form>
+												</td>
+										    </tr>
+									    {% endfor %}
+								  	</tbody>
+								</table>
+							</div>
 					{% else %}
-						<p class="alert_bc">Пока нет ни одной прочитанной книги</p>
+						<p class="h4 text-center text-white p-1">Пока нет ни одной прочитанной книги</p>
 					{% endif %}
 				</div>
-				<button class="btn_book" onclick="openForm()">Добавить книгу</button>
-				<form class="form_book" name="form_book" method="POST">
-					{% csrf_token %}
-					<label class="first_label">Автор</label>
-					{{ form_want_book.author }}
-				  	<label class="second_label">Название</label>
-				  	{{ form_want_book.title }}
-				  	<button type="submit" name="btn_books">Отправить</button>
-				</form>
 			</div>
 	</section>
+</main>
 {% endblock %}

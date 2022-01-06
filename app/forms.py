@@ -145,16 +145,16 @@ class RegistrationForm(UserCreationForm):
 	def __init__(self, *args, **kwargs):
 		super(RegistrationForm, self).__init__(*args, **kwargs)
 		self.fields['username'].widget = forms.TextInput(attrs={
-			'class': 'username_field_form',
+			'class': 'form-control text-center', 'placeholder': 'Введите логин'
 			})
 		self.fields['password1'].widget = forms.PasswordInput(attrs={
-			'class': 'password_field_form',
+			'class': 'form-control text-center', 'placeholder': 'Введите пароль'
 			})
 		self.fields['email'].widget = forms.EmailInput(attrs={
-			'class': 'email_field_form',
+			'class': 'form-control text-center', 'placeholder': 'Введите email'
 			})
 		self.fields['password2'].widget = forms.PasswordInput(attrs={
-			'class': 'password2_field_form',
+			'class': 'form-control text-center', 'placeholder': 'Повторите пароль'
 			})
 
 
@@ -171,9 +171,9 @@ class LoginForm(AuthenticationForm):
 	def __init__(self, *args, **kwargs):
 		super(LoginForm, self).__init__(*args, **kwargs)
 		self.fields['username'].widget = forms.TextInput(attrs={
-			'class': 'username_field_form',
+			'class': 'form-control text-center', 'placeholder': 'Введите логин'
 			})
 		self.fields['password'].widget = forms.PasswordInput(attrs={
-			'class': 'password_field_form',
+			'class': 'form-control text-center', 'placeholder': 'Введите пароль'
 			})
 	

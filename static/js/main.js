@@ -12,7 +12,7 @@ function openForm() {
   		btn_book.textContent = 'Добавить книгу';
   		btn_book.style.background = '';
   	}
-  	window.scrollTo(0, 150);
+  	// window.scrollTo(0, 150);
 }
 
 function openForm2() {
@@ -27,7 +27,7 @@ function openForm2() {
   		form_course.style.display = 'none';
   		btn_course.textContent = 'Добавить курс';
   	}
-  	window.scrollTo(0, 1000);
+  	// window.scrollTo(0, 1000);
 }
 
 $( function()
