@@ -11,41 +11,20 @@ from .forms import WantCoursesForm, WantBooksForm, WantVideosForm, WantArticlesF
 
 @login_required
 def account(request):
-	form_book = BooksForm
-	form_course = CoursesForm
 	username = request.user
-	if request.method == 'POST' and 'btn_books' in request.POST:
-		form_book = BooksForm(request.POST)
-		if form_book.is_valid():
-			form_book = form_book.save(commit=False)
-			form_book.user = request.user
-			form_book.save()
-			form_book = BooksForm()
-	if request.method == 'POST' and 'btn_courses' in request.POST:
-		form_course = CoursesForm(request.POST)
-		if form_course.is_valid():
-			form_course = form_course.save(commit=False)
-			form_course.user = request.user
-			form_course.save()
-	if request.method == 'POST' and 'delete_book' in request.POST:
-		delete_id = request.POST['delete_book']
-		print(delete_id)
-		Books.objects.filter(id=delete_id).delete()
-	if request.method == 'POST' and 'delete_course' in request.POST:
-		delete_id = request.POST['delete_course']
-		Courses.objects.filter(id=delete_id).delete()
-	try:
-		books = Books.objects.filter(user=request.user)
-	except Books.DoesNotExist:
-		books = None
-	try:
-		courses = Courses.objects.filter(user=request.user)
-	except Courses.DoesNotExist:
-		courses = None
-	print(courses)
-	return render(request, 'account.html', {'books': books,
-		'courses': courses, 'form_book': form_book,
-		'form_course': form_course, 'username': username})
+	count_books = Books.objects.filter(user=username).count()
+	count_courses = Courses.objects.filter(user=username).count()
+	count_articles = Articles.objects.filter(user=username).count()
+	count_videos = Videos.objects.filter(user=username).count()
+	last_book = Books.objects.latest('date')
+	last_course = Courses.objects.latest('date')
+	last_article = Articles.objects.latest('date')
+	last_video = Videos.objects.latest('date')
+	return render(request, 'account.html', {'username': username,
+		'count_books': count_books, 'count_courses': count_courses, 
+		'count_articles': count_articles, 'count_videos': count_videos,
+		'last_book': last_book, 'last_course': last_course,
+		'last_article': last_article, 'last_video': last_video})
 
 @login_required
 def books(request):
@@ -219,12 +198,12 @@ def want_articles(request):
 	return render(request, 'want_articles.html', {'want_articles': want_articles, 
 		'form_want_article': form_want_article, 'username': username})
 
-def main(request, username):
-	user_exist = User.objects.filter(username=username).exists()
-	books = Books.objects.filter(user__username=username)
-	courses = Courses.objects.filter(user__username=username)
-	return render(request, 'main.html', {'books': books,
-		'courses': courses, 'username': username, 'user_exist': user_exist})
+# def main(request, username):
+# 	user_exist = User.objects.filter(username=username).exists()
+# 	books = Books.objects.filter(user__username=username)
+# 	courses = Courses.objects.filter(user__username=username)
+# 	return render(request, 'main.html', {'books': books,
+# 		'courses': courses, 'username': username, 'user_exist': user_exist})
 
 def registration(request):
 	if request.user.is_authenticated:

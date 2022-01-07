@@ -38,6 +38,11 @@ table {
 	border-radius: 10px;
 	font-size: 20px;
 }
+@media only screen and (max-width: 420px) {
+	.btn {
+		font-size: 3vw;
+	}
+}
 
 .table-hover {
 	color: #ffffff;
@@ -60,4 +65,15 @@ table {
 	background: #dc3545;
 }
 
+.border_rad {
+	border-radius: 10px;
+	background: #000000;
+}
 
+/*.border_st {
+	border-style: none !important;
+}*/
+
+.table_margin {
+	margin-bottom: 0.2rem;
+}
