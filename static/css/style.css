@@ -77,3 +77,24 @@ table {
 .table_margin {
 	margin-bottom: 0.2rem;
 }
+
+.aaa {
+	display: block;
+    margin: 8px;
+}
+
+.color_b {
+	background: #0d6efd;
+}
+
+.color_c {
+	background: #dc3545;
+}
+
+.color_a {
+	background: #198754;
+}
+
+.color_v {
+	background: #ffc107;
+}

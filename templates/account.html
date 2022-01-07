@@ -6,7 +6,7 @@
 	<header>
 		<nav class="navbar navbar-dark">
 		  	<div class="container-fluid">
-		    	<a class="navbar-brand flex-grow-1">MyBC</a>
+		    	<a href="{% url 'account' %}" class="navbar-brand flex-grow-1">MyBC</a>
 		    	<form class="d-flex me-3">
 			      	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 			      	<button class="btn btn-outline-light" type="submit">Поиск</button>
@@ -36,7 +36,7 @@
 			<div class="container">
 				<div class="alignment">
 					<h1 class="text-center text-white p-2">{{ username }}</h1>
-					<div>
+					<div class="col m-3 p-3 aaa">
 						<canvas id="pie-chart" width="600" height="400" class="mx-auto"></canvas>
 					</div>
 					<script>
@@ -58,29 +58,36 @@
                     			position: 'right',
                     			labels: {
                     				fontColor: "white",
-                    				fontSize: 20
+                    				fontSize: 20,
+                    				position: 'outside'
                 				}
-                			}
-                		}
+                			},
+            //     			pieceLabel: {
+						      //   render: 'label',
+						      //   fontColor: 'white',
+						      //   position: 'outside',
+						      //   segment: true,
+						      // }
+                		},
 					});
 					</script>	
 					<div class="container">
 					  	<div class="row text-center text-white">
-					    	<div class="col border border-white m-3 p-3 border_rad">
-					      		<h4>Прочитано книг:</h4>
-					      		<h2>{{count_books}}</h2>
+					    	<div class="col border border-white m-3 p-3 border_rad color_b">
+					      		<h5>Прочитано книг:</h5>
+					      		<h3>{{count_books}}</h3>
 					    	</div>
-					    	<div class="col border border-white m-3 p-3 border_rad">
-					      		<h4>Пройдено курсов:</h4>
-					      		<h2>{{count_courses}}</h2>
+					    	<div class="col border border-white m-3 p-3 border_rad color_c">
+					      		<h5>Пройдено курсов:</h5>
+					      		<h3>{{count_courses}}</h3>
 					    	</div>
-					    	<div class="col border border-white m-3 p-3 border_rad">
-					      		<h4>Прочитано статей:</h4>
-					      		<h2>{{count_articles}}</h2>
+					    	<div class="col border border-white m-3 p-3 border_rad color_a">
+					      		<h5>Прочитано статей:</h5>
+					      		<h3>{{count_articles}}</h3>
 					    	</div>
-					    	<div class="col border border-white m-3 p-3 border_rad">
-					      		<h4>Просмотрено видео:</h4>
-					      		<h2>{{count_videos}}</h2>
+					    	<div class="col border border-white m-3 p-3 border_rad color_v">
+					      		<h5>Просмотрено видео:</h5>
+					      		<h3>{{count_videos}}</h3>
 					    	</div>
 					  	</div>
 					</div>
