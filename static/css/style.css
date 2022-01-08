@@ -70,17 +70,8 @@ table {
 	background: #000000;
 }
 
-/*.border_st {
-	border-style: none !important;
-}*/
-
 .table_margin {
 	margin-bottom: 0.2rem;
-}
-
-.aaa {
-	display: block;
-    margin: 8px;
 }
 
 .color_b {
@@ -97,4 +88,17 @@ table {
 
 .color_v {
 	background: #ffc107;
+}
+
+.color_bl {
+	background: #000000;
+}
+
+tbody {
+	border-style: hidden;
+	border: 2px solid #dee2e600;
+}
+
+.table {
+	border: 2px solid #dee2e600;
 }

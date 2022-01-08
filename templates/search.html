@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}MyBC{% endblock %}
+
+{% block content %}
+	<header>
+		<nav class="navbar navbar-dark">
+		  	<div class="container-fluid">
+		    	<a href="{% url 'account' %}" class="navbar-brand flex-grow-1">MyBC</a>
+		    	<form action="{% url 'search' %}" method="GET" class="d-flex me-3">
+			      	<input class="form-control me-2" type="search" placeholder="Найти пользователя" aria-label="Search" name="q" required>
+			      	<button class="btn btn-outline-light" type="submit">Поиск</button>
+			    </form>
+		    	<div class="text-end">
+          			<!-- <a href="{% url 'login' %}" type="button" class="btn btn-warning me-2">Login</a>
+          			<a href="{% url 'registration' %}" type="button" class="btn btn-warning">Sign-up</a> -->
+          			<a href="{% url 'logout' %}" type="button" class="btn btn-outline-danger">Выйти</a>
+        		</div>
+		  	</div>
+		</nav>
+	</header>
+	<main>
+		<section class="common_field">
+			<div class="container">
+				<div class="alignment mt-3 mb-2 p-2">
+					<h1 class="text-center text-white p-2">Результаты поиска:</h1>
+						{% for obj in user_stat %}
+							<div class="border border-white m-2 p-2 border_rad color_bl">
+								<div class="container">
+									<div class="row">
+										<div class="col">
+											<h2 class="text-white p-2">{{ obj.user }}</h2>
+										</div>
+										<div class="col text-white text-center">
+											<h6>Прочитано книг:</h6>
+											<h2>{{ obj.books_count }}</h2>
+										</div>
+										<div class="col text-white text-center">
+											<h6>Пройдено курсов:</h6>
+											<h2>{{ obj.courses_count }}</h2>
+										</div>
+										<div class="col text-white text-center">
+											<h6>Прочитано статей:</h6>
+											<h2>{{ obj.articles_count }}</h2>
+										</div>
+										<div class="col text-white text-center">
+											<h6>Просмотрено видео:</h6>
+											<h2>{{ obj.videos_count }}</h2>
+										</div>
+									</div>
+								</div>
+   							</div>
+	   					{% endfor %}
+   					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+{% endblock %}

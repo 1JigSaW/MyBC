@@ -7,8 +7,8 @@
 		<nav class="navbar navbar-dark">
 		  	<div class="container-fluid">
 		    	<a href="{% url 'account' %}" class="navbar-brand flex-grow-1">MyBC</a>
-		    	<form class="d-flex me-3">
-			      	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		    	<form action="{% url 'search' %}" method="GET" class="d-flex me-3">
+			      	<input class="form-control me-2" type="search" placeholder="Найти пользователя" aria-label="Search" name="q" required>
 			      	<button class="btn btn-outline-light" type="submit">Поиск</button>
 			    </form>
 		    	<div class="text-end">
@@ -104,7 +104,7 @@
 								 </thead>
 							  	<tbody>
 								    <tr>
-								      	<td scope="col-3"><h5 class="table_margin">{{ last_book.author }}</h5></td>
+								      	<td><h5 class="table_margin">{{ last_book.author }}</h5></td>
 								      	<td><h5 class="table_margin">{{ last_book.title }}</h5></td>
 								      	<td><h5 class="table_margin">{{ last_book.date }}</h5></td>
 								    </tr>

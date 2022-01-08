@@ -6,11 +6,10 @@
 	<header>
 		<nav class="navbar navbar-dark">
 		  	<div class="container-fluid">
-		    	<a href="{% url 'account' %}" class="navbar-brand flex-grow-1">MyBC</a>
-		    	<form class="d-flex me-3">
-			      	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-			      	<button class="btn btn-outline-light" type="submit">Поиск</button>
-			    </form>
+		    	<form action="{% url 'search' %}" method="GET" class="d-flex me-3">
+		      		<input class="form-control me-2" type="search" placeholder="Найти пользователя" aria-label="Search" name="q" required>
+		      	<button class="btn btn-outline-light" type="submit">Поиск</button>
+		    	</form>
 		    	<div class="text-end">
           			<!-- <a href="{% url 'login' %}" type="button" class="btn btn-warning me-2">Login</a>
           			<a href="{% url 'registration' %}" type="button" class="btn btn-warning">Sign-up</a> -->

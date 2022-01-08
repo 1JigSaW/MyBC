@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
+from django.db.models import Q
 from .models import Courses, Books, Videos, Articles
 from .models import WantCourses, WantBooks, WantVideos, WantArticles
 from .forms import CoursesForm, BooksForm, VideosForm, ArticlesForm
@@ -237,3 +238,18 @@ def logout_user(request):
 	prev_user = request.user
 	logout(request)
 	return redirect('main', username=str(prev_user))
+
+def search(request):
+	user_stat = []
+	if 'q' in request.GET and request.GET['q']:
+		query = request.GET.get('q')
+		user_list = User.objects.filter(Q(username__icontains=query))
+		for user in user_list:
+			books_count = Books.objects.filter(user=user).count()
+			courses_count = Courses.objects.filter(user=user).count()
+			articles_count = Articles.objects.filter(user=user).count()
+			videos_count = Videos.objects.filter(user=user).count()
+			user_stat.append({ 'user': user, 'books_count': books_count, 
+				'courses_count': courses_count, 'articles_count': articles_count, 
+				'videos_count': videos_count}) 
+		return render(request, 'search.html', {'user_stat': user_stat})
