@@ -10,9 +10,28 @@ from .forms import RegistrationForm, LoginForm
 from .forms import WantCoursesForm, WantBooksForm, WantVideosForm, WantArticlesForm
 
 
-@login_required
+# @login_required
+# def account(request):
+# 	username = request.user
+# 	count_books = Books.objects.filter(user=username).count()
+# 	count_courses = Courses.objects.filter(user=username).count()
+# 	count_articles = Articles.objects.filter(user=username).count()
+# 	count_videos = Videos.objects.filter(user=username).count()
+# 	last_book = Books.objects.latest('date')
+# 	last_course = Courses.objects.latest('date')
+# 	last_article = Articles.objects.latest('date')
+# 	last_video = Videos.objects.latest('date')
+# 	return render(request, 'account.html', {'username': username,
+# 		'count_books': count_books, 'count_courses': count_courses, 
+# 		'count_articles': count_articles, 'count_videos': count_videos,
+# 		'last_book': last_book, 'last_course': last_course,
+# 		'last_article': last_article, 'last_video': last_video})
+
 def account(request):
-	username = request.user
+	username = 'wwwwww'
+	if request.user.is_authenticated:
+		username = request.user
+	username = User.objects.get(username=username)
 	count_books = Books.objects.filter(user=username).count()
 	count_courses = Courses.objects.filter(user=username).count()
 	count_articles = Articles.objects.filter(user=username).count()
@@ -237,7 +256,7 @@ def login_user(request):
 def logout_user(request):
 	prev_user = request.user
 	logout(request)
-	return redirect('main', username=str(prev_user))
+	return redirect('account')
 
 def search(request):
 	user_stat = []
