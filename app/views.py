@@ -217,7 +217,7 @@ def want_articles(request, username):
 
 def registration(request):
 	if request.user.is_authenticated:
-		redirect('account')
+		redirect('account', request.user)
 	if request.method == 'POST':
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
@@ -228,7 +228,7 @@ def registration(request):
 
 def login_user(request):
 	if request.user.is_authenticated:
-		return redirect('account')
+		return redirect('account', request.user)
 	errors = []
 	if request.method == 'POST':
 		form = LoginForm(request.POST)
@@ -238,7 +238,7 @@ def login_user(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				return redirect('account')
+				return redirect('account', request.user)
 	form = LoginForm()
 	return render(request, 'login.html', {'form': form})
 
@@ -246,7 +246,7 @@ def login_user(request):
 def logout_user(request):
 	prev_user = request.user
 	logout(request)
-	return redirect('account')
+	return redirect('account', prev_user)
 
 def search(request):
 	user_stat = []
@@ -262,3 +262,6 @@ def search(request):
 				'courses_count': courses_count, 'articles_count': articles_count, 
 				'videos_count': videos_count}) 
 		return render(request, 'search.html', {'user_stat': user_stat})
+
+def index(request):
+	return render(request, 'index.html')
