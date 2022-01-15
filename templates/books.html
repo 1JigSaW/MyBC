@@ -9,9 +9,9 @@
 				<div class="submodule mt-3 mb-2">
 					<div class="btn-group w-100 p-3">
 						<a href="{% url 'books' username %}" class="btn btn-outline-light p-3 active" aria-current="page">Книги</a>
-						<a href="{% url 'courses' %}" class="btn btn-outline-light p-3">Курсы</a>
-						<a href="{% url 'articles' %}" class="btn btn-outline-light p-3" >Статьи</a>
-						<a href="{% url 'videos' %}" class="btn btn-outline-light p-3">Видео</a>
+						<a href="{% url 'courses' username %}" class="btn btn-outline-light p-3">Курсы</a>
+						<a href="{% url 'articles' username %}" class="btn btn-outline-light p-3" >Статьи</a>
+						<a href="{% url 'videos' username %}" class="btn btn-outline-light p-3">Видео</a>
 					</div>
 				</div>
 			</div>
@@ -44,7 +44,7 @@
 					<div class="text-center">
 						<div class="btn-group p-3 w-40">
 							<a href="{% url 'books' username %}" class="btn btn-outline-light active">Прочитанные</a>
-							<a href="{% url 'future_books' %}" class="btn btn-outline-light">Хочу прочитать</a>
+							<a href="{% url 'future_books' username %}" class="btn btn-outline-light">Хочу прочитать</a>
 						</div>
 					</div>
 					{% if books %}
