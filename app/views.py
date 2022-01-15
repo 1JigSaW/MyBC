@@ -9,26 +9,7 @@ from .forms import CoursesForm, BooksForm, VideosForm, ArticlesForm
 from .forms import RegistrationForm, LoginForm
 from .forms import WantCoursesForm, WantBooksForm, WantVideosForm, WantArticlesForm
 
-
-# @login_required
-# def account(request):
-# 	username = request.user
-# 	count_books = Books.objects.filter(user=username).count()
-# 	count_courses = Courses.objects.filter(user=username).count()
-# 	count_articles = Articles.objects.filter(user=username).count()
-# 	count_videos = Videos.objects.filter(user=username).count()
-# 	last_book = Books.objects.latest('date')
-# 	last_course = Courses.objects.latest('date')
-# 	last_article = Articles.objects.latest('date')
-# 	last_video = Videos.objects.latest('date')
-# 	return render(request, 'account.html', {'username': username,
-# 		'count_books': count_books, 'count_courses': count_courses, 
-# 		'count_articles': count_articles, 'count_videos': count_videos,
-# 		'last_book': last_book, 'last_course': last_course,
-# 		'last_article': last_article, 'last_video': last_video})
-
-def account(request):
-	username = 'wwwwww'
+def account(request, username):
 	if request.user.is_authenticated:
 		username = request.user
 	username = User.objects.get(username=username)
@@ -46,15 +27,16 @@ def account(request):
 		'last_book': last_book, 'last_course': last_course,
 		'last_article': last_article, 'last_video': last_video})
 
-@login_required
-def books(request):
+def books(request, username):
+	if request.user.is_authenticated:
+		username = request.user
+	username = User.objects.get(username=username)
 	form_book = BooksForm
-	username = request.user
 	if request.method == 'POST' and 'btn_books' in request.POST:
 		form_book = BooksForm(request.POST)
 		if form_book.is_valid():
 			form_book = form_book.save(commit=False)
-			form_book.user = request.user
+			form_book.user = username
 			form_book.save()
 			form_book = BooksForm()
 	if request.method == 'POST' and 'delete_book' in request.POST:
@@ -62,15 +44,14 @@ def books(request):
 		print(delete_id)
 		Books.objects.filter(id=delete_id).delete()
 	try:
-		books = Books.objects.filter(user=request.user)
+		books = Books.objects.filter(user=username)
 	except Books.DoesNotExist:
 		books = None
 	return render(request, 'books.html', {'books': books,
 		'form_book': form_book,
 		'username': username})
 
-@login_required
-def want_books(request):
+def want_books(request, username):
 	form_want_book = WantBooksForm
 	username = request.user
 	if request.method == 'POST' and 'btn_books' in request.POST:
@@ -92,8 +73,7 @@ def want_books(request):
 		'form_want_book': form_want_book,
 		'username': username})
 
-@login_required
-def courses(request):
+def courses(request, username):
 	form_course = CoursesForm
 	username = request.user
 	if request.method == 'POST' and 'btn_courses' in request.POST:
@@ -113,8 +93,7 @@ def courses(request):
 	return render(request, 'courses.html', {'courses': courses, 
 		'form_course': form_course, 'username': username})
 
-@login_required
-def want_courses(request):
+def want_courses(request, username):
 	form_want_course = WantCoursesForm
 	username = request.user
 	if request.method == 'POST' and 'btn_courses' in request.POST:
@@ -134,8 +113,7 @@ def want_courses(request):
 	return render(request, 'want_courses.html', {'want_courses': want_courses, 
 		'form_want_course': form_want_course, 'username': username})
 
-@login_required
-def videos(request):
+def videos(request, username):
 	form_video = VideosForm
 	username = request.user
 	if request.method == 'POST' and 'btn_videos' in request.POST:
@@ -155,8 +133,7 @@ def videos(request):
 	return render(request, 'videos.html', {'videos': videos, 
 		'form_video': form_video, 'username': username})
 
-@login_required
-def want_videos(request):
+def want_videos(request, username):
 	form_want_video = WantVideosForm
 	username = request.user
 	if request.method == 'POST' and 'btn_videos' in request.POST:
@@ -176,8 +153,7 @@ def want_videos(request):
 	return render(request, 'want_videos.html', {'want_videos': want_videos, 
 		'form_want_video': form_want_video, 'username': username})
 
-@login_required
-def articles(request):
+def articles(request, username):
 	form_article = ArticlesForm
 	username = request.user
 	if request.method == 'POST' and 'btn_articles' in request.POST:
@@ -197,8 +173,8 @@ def articles(request):
 	return render(request, 'articles.html', {'articles': articles, 
 		'form_article': form_article, 'username': username})
 
-@login_required
-def want_articles(request):
+
+def want_articles(request, username):
 	form_want_article = WantArticlesForm
 	username = request.user
 	if request.method == 'POST' and 'btn_articles' in request.POST:

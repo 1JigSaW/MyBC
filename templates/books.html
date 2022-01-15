@@ -3,33 +3,12 @@
 {% block title %}MyBC{% endblock %}
 
 {% block content %}
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark">
-		  	<div class="container-fluid">
-		    	<a href="{% url 'account' %}" class="navbar-brand">MyBC</a>
-		    	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    				<span class="navbar-toggler-icon"></span>
-  				</button>
-  				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-  					<div class="d-flex ms-auto">
-			    	<form action="{% url 'search' %}" method="GET" class="d-flex me-2 my-2 w-100">
-				      	<input class="form-control me-2" type="search" placeholder="Найти пользователя" aria-label="Search" name="q" required>
-				      	<button class="btn btn-outline-light" type="submit">Поиск</button>
-				    </form>
-	          		<!-- <a href="{% url 'login' %}" type="button" class="btn btn-warning my-2">Login</a>
-	          		<a href="{% url 'registration' %}" type="button" class="btn btn-warning my-2">Sign-up</a> -->
-	          		<a href="{% url 'logout' %}" type="button" class="btn btn-outline-danger my-2">Выйти</a>
-	          		</div>
-        		</div>
-			</div>
-		</nav>
-	</header>	
 	<main>
 		<section class="subheader">
 			<div class="container">
 				<div class="submodule mt-3 mb-2">
 					<div class="btn-group w-100 p-3">
-						<a href="{% url 'books' %}" class="btn btn-outline-light p-3 active" aria-current="page">Книги</a>
+						<a href="{% url 'books' username %}" class="btn btn-outline-light p-3 active" aria-current="page">Книги</a>
 						<a href="{% url 'courses' %}" class="btn btn-outline-light p-3">Курсы</a>
 						<a href="{% url 'articles' %}" class="btn btn-outline-light p-3" >Статьи</a>
 						<a href="{% url 'videos' %}" class="btn btn-outline-light p-3">Видео</a>
@@ -37,43 +16,6 @@
 				</div>
 			</div>
 		</section>
-		<!-- <section class="main">
-				<div class="alignment">
-					<button id="redact" class="btn_redact" onclick="redact()">Редактировать</button>
-					<div class="switch_future">
-						<a href="{% url 'future_books' %}"><button class="switch_book">Хочу прочитать</button></a>
-						<a href="{% url 'books' %}"><button class="switch_book">Прочитал</button></a>
-					</div>
-					<h1>Книги:</h1>		
-					<div class="books">
-						{% if books %}
-							<ol>{% for book in books %}
-									<form method="post">
-										{% csrf_token %}
-										<button class="delete_post" name="delete_book" value="{{ book.id }}"><img class="delete_img" src="{% static 'img/delete.png' %}" ></button>
-									</form>
-									<li>{{ book.author }}
-									{{ book.title }}
-									{{ book.date }}</li>
-								{% endfor %}
-							</ol>
-						{% else %}
-							<p class="alert_bc">Пока нет ни одной прочитанной книги</p>
-						{% endif %}
-					</div>
-					<button class="btn_book" onclick="openForm()">Добавить книгу</button>
-					<form class="form_book" name="form_book" method="POST">
-						{% csrf_token %}
-						<label class="first_label">Автор</label>
-						{{ form_book.author }}
-					  	<label class="second_label">Название</label>
-					  	{{ form_book.title }}
-					  	<label class="third_label">Дата</label>
-					  	{{ form_book.date }}
-					  	<button type="submit" name="btn_books">Отправить</button>
-					</form>
-				</div>
-		</section> -->
 		<section class="common_field">
 			<div class="container">
 				<div class="alignment">
@@ -101,7 +43,7 @@
 					<h1 class="text-center text-white p-2">Прочитанные книги:</h1>
 					<div class="text-center">
 						<div class="btn-group p-3 w-40">
-							<a href="{% url 'books' %}" class="btn btn-outline-light active">Прочитанные</a>
+							<a href="{% url 'books' username %}" class="btn btn-outline-light active">Прочитанные</a>
 							<a href="{% url 'future_books' %}" class="btn btn-outline-light">Хочу прочитать</a>
 						</div>
 					</div>
