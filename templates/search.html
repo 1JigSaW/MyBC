@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_auth.html" %}
 {% load static %}
 {% block title %}MyBC{% endblock %}
 
@@ -10,29 +10,31 @@
 					<h1 class="text-center text-white p-2">Результаты поиска:</h1>
 						{% for obj in user_stat %}
 							<div class="border border-white m-2 p-2 border_rad color_bl">
-								<div class="container">
-									<div class="row">
-										<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-											<h2 class="text-white p-2">{{ obj.user }}</h2>
-										</div>
-										<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 text-white text-center">
-											<h6>Прочитано книг:</h6>
-											<h2>{{ obj.books_count }}</h2>
-										</div>
-										<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 text-white text-center">
-											<h6>Пройдено курсов:</h6>
-											<h2>{{ obj.courses_count }}</h2>
-										</div>
-										<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 text-white text-center">
-											<h6>Прочитано статей:</h6>
-											<h2>{{ obj.articles_count }}</h2>
-										</div>
-										<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 text-white text-center">
-											<h6>Просмотрено видео:</h6>
-											<h2>{{ obj.videos_count }}</h2>
+								<a href="{% url 'account' obj.user %}">
+									<div class="container">
+										<div class="row">
+											<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+												<h2 class="text-white p-2">{{ obj.user }}</h2>
+											</div>
+											<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 text-white text-center">
+												<h6>Прочитано книг:</h6>
+												<h2>{{ obj.books_count }}</h2>
+											</div>
+											<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 text-white text-center">
+												<h6>Пройдено курсов:</h6>
+												<h2>{{ obj.courses_count }}</h2>
+											</div>
+											<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 text-white text-center">
+												<h6>Прочитано статей:</h6>
+												<h2>{{ obj.articles_count }}</h2>
+											</div>
+											<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 text-white text-center">
+												<h6>Просмотрено видео:</h6>
+												<h2>{{ obj.videos_count }}</h2>
+											</div>
 										</div>
 									</div>
-								</div>
+								</a>
    							</div>
 	   					{% endfor %}
    					</div>
