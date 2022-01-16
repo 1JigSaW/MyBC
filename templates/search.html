@@ -10,7 +10,7 @@
 					<h1 class="text-center text-white p-2">Результаты поиска:</h1>
 						{% for obj in user_stat %}
 							<div class="border border-white m-2 p-2 border_rad color_bl">
-								<a href="{% url 'account' obj.user %}">
+								<a href="{% url 'account' obj.user %}" class="text-decoration-none">
 									<div class="container">
 										<div class="row">
 											<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">

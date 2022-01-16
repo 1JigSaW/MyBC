@@ -20,6 +20,7 @@
 			<div class="container">
 				<div class="alignment">
 					<h1 class="text-center text-white p-2">{{ username }}</h1>
+					{% if count_books != 0 or count_courses != 0 or count_articles != 0 or count_videos != 0  %}
 					<div class="col m-3 p-3 aaa">
 						<canvas id="pie-chart" width="600" height="400" class="mx-auto"></canvas>
 					</div>
@@ -55,6 +56,7 @@
                 		},
 					});
 					</script>	
+					{% endif %}
 					<div class="container">
 					  	<div class="row text-center text-white">
 					    	<div class="col border border-white m-3 p-3 border_rad color_b">
