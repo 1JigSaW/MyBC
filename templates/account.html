@@ -77,90 +77,98 @@
 					    	</div>
 					  	</div>
 					</div>
-					<div>
-						<h3 class="text-white px-2 mx-2 pb-3">Последняя прочитанная книга:</h3>
-						<div class="px-3 border_bottom">
-							<table class="table text-break ml-3 table-hover text-dark border-bottom-0 border_bottom">
-								<thead>
-								    <tr>
-								      	<th style="width:33%">Автор</th>
-								      	<th style="width:33%">Название</th>
-								      	<th style="width:33%">Дата</th>
-								    </tr>
-								 </thead>
-							  	<tbody>
-								    <tr>
-								      	<td><h5 class="table_margin">{{ last_book.author }}</h5></td>
-								      	<td><h5 class="table_margin">{{ last_book.title }}</h5></td>
-								      	<td><h5 class="table_margin">{{ last_book.date }}</h5></td>
-								    </tr>
-							  	</tbody>
-							</table>
+					{% if last_book is not None %}
+						<div>
+							<h3 class="text-white px-2 mx-2 pb-3">Последняя прочитанная книга:</h3>
+							<div class="px-3 border_bottom">
+								<table class="table text-break ml-3 table-hover text-dark border-bottom-0 border_bottom">
+									<thead>
+									    <tr>
+									      	<th style="width:33%">Автор</th>
+									      	<th style="width:33%">Название</th>
+									      	<th style="width:33%">Дата</th>
+									    </tr>
+									 </thead>
+								  	<tbody>
+									    <tr>
+									      	<td><h5 class="table_margin">{{ last_book.author }}</h5></td>
+									      	<td><h5 class="table_margin">{{ last_book.title }}</h5></td>
+									      	<td><h5 class="table_margin">{{ last_book.date }}</h5></td>
+									    </tr>
+								  	</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
-					<div>
-						<h3 class="text-white px-2 mx-2 pb-3">Последний пройденный курс:</h3>
-						<div class="px-3 border_bottom">
-							<table class="table text-break ml-3 table-hover text-dark border-bottom-0 border_bottom">
-								<thead>
-								    <tr>
-								      	<th style="width:33%">Платформа</th>
-								      	<th style="width:33%">Название</th>
-								      	<th style="width:33%">Дата</th>
-								    </tr>
-								 </thead>
-							  	<tbody>
-								    <tr>
-								      	<td><h5 class="table_margin">{{ last_course.place }}</h5></td>
-								      	<td><h5 class="table_margin">{{ last_course.title }}</h5></td>
-								      	<td><h5 class="table_margin">{{ last_course.date }}</h5></td>
-								    </tr>
-							  	</tbody>
-							</table>
+					{% endif %}
+					{% if last_course is not None %}
+						<div>
+							<h3 class="text-white px-2 mx-2 pb-3">Последний пройденный курс:</h3>
+							<div class="px-3 border_bottom">
+								<table class="table text-break ml-3 table-hover text-dark border-bottom-0 border_bottom">
+									<thead>
+									    <tr>
+									      	<th style="width:33%">Платформа</th>
+									      	<th style="width:33%">Название</th>
+									      	<th style="width:33%">Дата</th>
+									    </tr>
+									 </thead>
+								  	<tbody>
+									    <tr>
+									      	<td><h5 class="table_margin">{{ last_course.place }}</h5></td>
+									      	<td><h5 class="table_margin">{{ last_course.title }}</h5></td>
+									      	<td><h5 class="table_margin">{{ last_course.date }}</h5></td>
+									    </tr>
+								  	</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
-					<div>
-						<h3 class="text-white px-2 mx-2 pb-3">Последняя прочитанная статья:</h3>
-						<div class="px-3 border_bottom">
-							<table class="table text-break ml-3 table-hover text-dark border-bottom-0 border_bottom">
-								<thead>
-								    <tr>
-								      	<th style="width:33%">Ссылка</th>
-								      	<th style="width:33%">Название</th>
-								      	<th style="width:33%">Дата</th>
-								    </tr>
-								 </thead>
-							  	<tbody>
-								    <tr>
-								      	<td><h5 class="table_margin">{{ last_article.link }}</h5></td>
-								      	<td><h5 class="table_margin">{{ last_article.title }}</h5></td>
-								      	<td><h5 class="table_margin">{{ last_article.date }}</h5></td>
-								    </tr>
-							  	</tbody>
-							</table>
+					{% endif %}
+					{% if last_article is not None %}
+						<div>
+							<h3 class="text-white px-2 mx-2 pb-3">Последняя прочитанная статья:</h3>
+							<div class="px-3 border_bottom">
+								<table class="table text-break ml-3 table-hover text-dark border-bottom-0 border_bottom">
+									<thead>
+									    <tr>
+									      	<th style="width:33%">Ссылка</th>
+									      	<th style="width:33%">Название</th>
+									      	<th style="width:33%">Дата</th>
+									    </tr>
+									 </thead>
+								  	<tbody>
+									    <tr>
+									      	<td><h5 class="table_margin">{{ last_article.link }}</h5></td>
+									      	<td><h5 class="table_margin">{{ last_article.title }}</h5></td>
+									      	<td><h5 class="table_margin">{{ last_article.date }}</h5></td>
+									    </tr>
+								  	</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
-					<div>
-						<h3 class="text-white px-2 mx-2 pb-3">Последнее просмотренное видео:</h3>
-						<div class="px-3 pb-1 border_bottom">
-							<table class="table text-break ml-3 table-hover text-dark border-bottom-0 border_bottom">
-								<thead>
-								    <tr>
-								      	<th style="width:33%">Ссылка</th>
-								      	<th style="width:33%">Название</th>
-								      	<th style="width:33%">Дата</th>
-								    </tr>
-								 </thead>
-							  	<tbody>
-								    <tr>
-								      	<td><h5 class="table_margin">{{ last_video.link }}</h5></td>
-								      	<td><h5 class="table_margin">{{ last_video.title }}</h5></td>
-								      	<td><h5 class="table_margin">{{ last_video.date }}</h5></td>
-								    </tr>
-							  	</tbody>
-							</table>
+					{% endif %}
+					{% if last_video is not None %}
+						<div>
+							<h3 class="text-white px-2 mx-2 pb-3">Последнее просмотренное видео:</h3>
+							<div class="px-3 pb-1 border_bottom">
+								<table class="table text-break ml-3 table-hover text-dark border-bottom-0 border_bottom">
+									<thead>
+									    <tr>
+									      	<th style="width:33%">Ссылка</th>
+									      	<th style="width:33%">Название</th>
+									      	<th style="width:33%">Дата</th>
+									    </tr>
+									 </thead>
+								  	<tbody>
+									    <tr>
+									      	<td><h5 class="table_margin">{{ last_video.link }}</h5></td>
+									      	<td><h5 class="table_margin">{{ last_video.title }}</h5></td>
+									      	<td><h5 class="table_margin">{{ last_video.date }}</h5></td>
+									    </tr>
+								  	</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
+					{% endif %}
 				</div>
 			</div>
 		</section>

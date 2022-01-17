@@ -15,6 +15,9 @@ h1, h2, h3, h4, h5 {
 	font-family: 'Nunito', sans-serif;
 }
 
+p, a, h5, h6, button, input, th {
+	font-family: 'Manrope', sans-serif;
+}
 
 .submodule, .alignment, .list-group-item {
 	background: #444444;
@@ -113,7 +116,7 @@ tbody {
 }
 
 .margin_h {
-	margin-top: 180px;
+	margin-top: 130px;
 }
 
 .margin_h_2 {

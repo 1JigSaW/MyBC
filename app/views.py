@@ -17,10 +17,22 @@ def account(request, username):
 	count_courses = Courses.objects.filter(user=username).count()
 	count_articles = Articles.objects.filter(user=username).count()
 	count_videos = Videos.objects.filter(user=username).count()
-	last_book = Books.objects.latest('date')
-	last_course = Courses.objects.latest('date')
-	last_article = Articles.objects.latest('date')
-	last_video = Videos.objects.latest('date')
+	try:
+		last_book = Books.objects.filter(user=username).latest('date')
+	except Books.DoesNotExist:
+		last_book = None
+	try:
+		last_course = Courses.objects.filter(user=username).latest('date')
+	except Courses.DoesNotExist:
+		last_course = None
+	try:
+		last_article = Articles.objects.filter(user=username).latest('date')
+	except Articles.DoesNotExist:
+		last_article = None
+	try:
+		last_video = Videos.objects.filter(user=username).latest('date')
+	except Videos.DoesNotExist:
+		last_video = None
 	return render(request, 'account.html', {'username': username,
 		'count_books': count_books, 'count_courses': count_courses, 
 		'count_articles': count_articles, 'count_videos': count_videos,
