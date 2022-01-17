@@ -176,4 +176,18 @@ class LoginForm(AuthenticationForm):
 		self.fields['password'].widget = forms.PasswordInput(attrs={
 			'class': 'form-control text-center', 'placeholder': 'Введите пароль'
 			})
-	
+
+class PasswordResetForm()
+
+	class Meta:
+			model = User
+			fields = ('email',)
+			labels = {
+				'email': ('Email'),
+			}
+
+		def __init__(self, *args, **kwargs):
+			super(LoginForm, self).__init__(*args, **kwargs)
+			self.fields['email'].widget = forms.TextInput(attrs={
+				'class': 'form-control text-center', 'placeholder': 'Введите почту'
+				})

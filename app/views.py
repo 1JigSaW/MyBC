@@ -277,3 +277,6 @@ def search(request):
 
 def index(request):
 	return render(request, 'index.html')
+
+def reset_password(request):
+	return render(request, 'reset_password.html')
