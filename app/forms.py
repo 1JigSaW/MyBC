@@ -189,5 +189,5 @@ class MyPasswordResetForm(PasswordResetForm):
 	def __init__(self, *args, **kwargs):
 		super(MyPasswordResetForm, self).__init__(*args, **kwargs)
 		self.fields['email'].widget = forms.EmailInput(attrs={
-			'class': 'form-control text-center', 'placeholder': 'Введите почту'
+			'class': 'form-control text-center', 'placeholder': 'Введите почту', 'name': 'email'
 			})

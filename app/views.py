@@ -1,8 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 from django.db.models import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+from django.contrib import messages
+from django.core.mail import send_mail, BadHeaderError
+from django.template.loader import render_to_string
 from .models import Courses, Books, Videos, Articles
 from .models import WantCourses, WantBooks, WantVideos, WantArticles
 from .forms import CoursesForm, BooksForm, VideosForm, ArticlesForm
@@ -279,12 +286,37 @@ def index(request):
 	return render(request, 'index.html')
 
 def reset_password(request):
-	if request.user.is_authenticated:
-		redirect('account', request.user)
+	# if request.user.is_authenticated:
+	# 	redirect('account', request.user)
 	if request.method == 'POST':
 		form = MyPasswordResetForm(request.POST)
 		if form.is_valid():
-			form = form.save()
-			return render(request, 'password_reset_done.html', {'form': form})
+			email_q = request.POST.get('email')
+			print(email_q)
+			associated_users = User.objects.filter(Q(email=email_q))
+			if associated_users.exists():
+				for user in associated_users:
+					subject = "Password Reset Requested"
+					email_template_name = "password_reset_email.txt"
+					c = {
+					"email":user.email,
+					'domain': 'your-website-name.com',
+					'site_name': 'Website Name',
+					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
+					'token': default_token_generator.make_token(user),
+					'protocol': 'https',
+					}
+					email = render_to_string(email_template_name, c)
+					try:
+						send_mail(subject, email, 'AWS_verified_email_address', [user.email], fail_silently=False)
+					except BadHeaderError:
+
+						return HttpResponse('Invalid header found.')
+						
+					messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
+					return redirect ("index")
 	form = MyPasswordResetForm()
 	return render(request, 'reset_password.html', {'form': form})
+
+def password_reset_confirm(request):
+	return render(request, 'password_reset_confirm.html')

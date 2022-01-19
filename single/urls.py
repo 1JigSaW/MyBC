@@ -19,11 +19,12 @@ from app import views
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
-	path('index/', views.index, name='index'),
+	path('', views.index, name='index'),
 	path('registration/', views.registration, name='registration'),
 	path('login/', views.login_user, name='login'),
 	path('logout/', views.logout_user, name='logout'),
-	path('reset-password/', views.reset_password, name='reset_password'),
+	path('reset_password/', views.reset_password, name='reset_password'),
+	path('reset/<uidb64>/<token>//', views.password_reset_confirm, name='password_reset_confirm'),
 	path('search/', views.search, name='search'),
 	path('<username>/', views.account, name='account'),
 	path('<username>/books/', views.books, name='books'),
