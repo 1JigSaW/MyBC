@@ -6,7 +6,7 @@ from django.db.models import Q
 from .models import Courses, Books, Videos, Articles
 from .models import WantCourses, WantBooks, WantVideos, WantArticles
 from .forms import CoursesForm, BooksForm, VideosForm, ArticlesForm
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, MyPasswordResetForm
 from .forms import WantCoursesForm, WantBooksForm, WantVideosForm, WantArticlesForm
 
 def account(request, username):
@@ -279,4 +279,12 @@ def index(request):
 	return render(request, 'index.html')
 
 def reset_password(request):
-	return render(request, 'reset_password.html')
+	if request.user.is_authenticated:
+		redirect('account', request.user)
+	if request.method == 'POST':
+		form = MyPasswordResetForm(request.POST)
+		if form.is_valid():
+			form = form.save()
+			return render(request, 'password_reset_done.html', {'form': form})
+	form = MyPasswordResetForm()
+	return render(request, 'reset_password.html', {'form': form})

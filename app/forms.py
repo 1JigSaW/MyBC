@@ -1,5 +1,5 @@
 from django.forms.fields import DateField
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django import forms
@@ -177,7 +177,7 @@ class LoginForm(AuthenticationForm):
 			'class': 'form-control text-center', 'placeholder': 'Введите пароль'
 			})
 
-class PasswordResetForm()
+class MyPasswordResetForm(PasswordResetForm):
 
 	class Meta:
 			model = User
@@ -186,8 +186,8 @@ class PasswordResetForm()
 				'email': ('Email'),
 			}
 
-		def __init__(self, *args, **kwargs):
-			super(LoginForm, self).__init__(*args, **kwargs)
-			self.fields['email'].widget = forms.TextInput(attrs={
-				'class': 'form-control text-center', 'placeholder': 'Введите почту'
-				})
+	def __init__(self, *args, **kwargs):
+		super(MyPasswordResetForm, self).__init__(*args, **kwargs)
+		self.fields['email'].widget = forms.EmailInput(attrs={
+			'class': 'form-control text-center', 'placeholder': 'Введите почту'
+			})
