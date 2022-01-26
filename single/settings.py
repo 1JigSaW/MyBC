@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z9-&u%h8)i!e3edp4-w(9tk@jlk&q)zy%&)c=23)+tn4rd+at^'
-
+with open('secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -129,7 +129,12 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = ( os.path.join('static'), )
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "admin@gmail.com"
+EMAIL_HOST_PASSWORD = " "
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
@@ -137,3 +142,6 @@ EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DATE_FORMAT = "d-m-Y"
+USE_L10N = False

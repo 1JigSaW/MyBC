@@ -8,7 +8,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.contrib import messages
-from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from .models import Courses, Books, Videos, Articles
 from .models import WantCourses, WantBooks, WantVideos, WantArticles
@@ -299,7 +299,7 @@ def reset_password(request):
 					subject = "Password Reset Requested"
 					email_template_name = "password_reset_email.txt"
 					c = {
-					"email":user.email,
+					"email": user.email,
 					'domain': 'your-website-name.com',
 					'site_name': 'Website Name',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
@@ -307,12 +307,8 @@ def reset_password(request):
 					'protocol': 'https',
 					}
 					email = render_to_string(email_template_name, c)
-					try:
-						send_mail(subject, email, 'AWS_verified_email_address', [user.email], fail_silently=False)
-					except BadHeaderError:
-
-						return HttpResponse('Invalid header found.')
-						
+					send_mail('Subject here', 'Here is the message.', 'jigsaw11211@gmail.com', ['jigsaw11211@gmail.com'], fail_silently=False)
+					print('ura')
 					messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
 					return redirect ("index")
 	form = MyPasswordResetForm()
