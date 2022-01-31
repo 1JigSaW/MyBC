@@ -128,7 +128,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = ( os.path.join('static'), )
+LOCAL_MACHINE_DEV = os.getenv("LOCAL_MACHINE_DEV") == "1"
+
+if LOCAL_MACHINE_DEV:
+    STATICFILES_DIRS = ["single/static"]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
