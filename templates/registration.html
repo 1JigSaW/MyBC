@@ -8,9 +8,13 @@
 		<div class="alignment mt-3 text-center">
 			<h1 class="text-center text-white p-2">Регистрация</h1>
 			<form method="POST">{% csrf_token %}
-				{% for message in messages %}
-				<p>{{message}}</p>
-				{% endfor %}
+				{% if form.errors %}
+			   		{% for field in form %}
+			      		{% for error in field.errors %}
+			          		<p class="text-danger">{{ error|escape }}</p>
+			      		{% endfor %}
+			   		{% endfor %}
+				{% endif %}
 				<!-- <label class="label_username">Имя пользователя</label>
 				{{ form.username }}
 				<label class="label_email">Email</label>
@@ -38,13 +42,6 @@
 			  	</div>
 			  	<button type="submit" class="btn btn-outline-light m-3 w-25">Регистрация</button>
 			</form>
-			{% if form.errors %}
-		   		{% for field in form %}
-		      		{% for error in field.errors %}
-		          		<h3 class="errors_password">{{ error|escape }}</h3>
-		      		{% endfor %}
-		   		{% endfor %}
-			{% endif %}
 		</div>
 	</div>
 </section>

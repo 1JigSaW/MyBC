@@ -17,8 +17,9 @@ from .forms import RegistrationForm, LoginForm, MyPasswordResetForm
 from .forms import WantCoursesForm, WantBooksForm, WantVideosForm, WantArticlesForm
 
 def account(request, username):
-	if request.user.is_authenticated:
-		username = request.user
+	if username is None:
+		if request.user.is_authenticated:
+			username = request.user
 	username = User.objects.get(username=username)
 	count_books = Books.objects.filter(user=username).count()
 	count_courses = Courses.objects.filter(user=username).count()
@@ -47,8 +48,9 @@ def account(request, username):
 		'last_article': last_article, 'last_video': last_video})
 
 def books(request, username):
-	if request.user.is_authenticated:
-		username = request.user
+	if username is None:
+		if request.user.is_authenticated:
+			username = request.user
 	username = User.objects.get(username=username)
 	form_book = BooksForm
 	if request.method == 'POST' and 'btn_books' in request.POST:
@@ -71,8 +73,9 @@ def books(request, username):
 		'username': username})
 
 def want_books(request, username):
-	if request.user.is_authenticated:
-		username = request.user
+	if username is None:
+		if request.user.is_authenticated:
+			username = request.user
 	username = User.objects.get(username=username)
 	form_want_book = WantBooksForm
 	if request.method == 'POST' and 'btn_books' in request.POST:
@@ -95,8 +98,9 @@ def want_books(request, username):
 		'username': username})
 
 def courses(request, username):
-	if request.user.is_authenticated:
-		username = request.user
+	if username is None:
+		if request.user.is_authenticated:
+			username = request.user
 	username = User.objects.get(username=username)
 	form_course = CoursesForm
 	if request.method == 'POST' and 'btn_courses' in request.POST:
@@ -117,8 +121,9 @@ def courses(request, username):
 		'form_course': form_course, 'username': username})
 
 def want_courses(request, username):
-	if request.user.is_authenticated:
-		username = request.user
+	if username is None:
+		if request.user.is_authenticated:
+			username = request.user
 	username = User.objects.get(username=username)
 	form_want_course = WantCoursesForm
 	if request.method == 'POST' and 'btn_courses' in request.POST:
@@ -139,8 +144,9 @@ def want_courses(request, username):
 		'form_want_course': form_want_course, 'username': username})
 
 def videos(request, username):
-	if request.user.is_authenticated:
-		username = request.user
+	if username is None:
+		if request.user.is_authenticated:
+			username = request.user
 	username = User.objects.get(username=username)
 	form_video = VideosForm
 	if request.method == 'POST' and 'btn_videos' in request.POST:
@@ -161,8 +167,9 @@ def videos(request, username):
 		'form_video': form_video, 'username': username})
 
 def want_videos(request, username):
-	if request.user.is_authenticated:
-		username = request.user
+	if username is None:
+		if request.user.is_authenticated:
+			username = request.user
 	username = User.objects.get(username=username)
 	form_want_video = WantVideosForm
 	if request.method == 'POST' and 'btn_videos' in request.POST:
@@ -183,8 +190,9 @@ def want_videos(request, username):
 		'form_want_video': form_want_video, 'username': username})
 
 def articles(request, username):
-	if request.user.is_authenticated:
-		username = request.user
+	if username is None:
+		if request.user.is_authenticated:
+			username = request.user
 	username = User.objects.get(username=username)
 	form_article = ArticlesForm
 	if request.method == 'POST' and 'btn_articles' in request.POST:
@@ -206,8 +214,9 @@ def articles(request, username):
 
 
 def want_articles(request, username):
-	if request.user.is_authenticated:
-		username = request.user
+	if username is None:
+		if request.user.is_authenticated:
+			username = request.user
 	username = User.objects.get(username=username)
 	form_want_article = WantArticlesForm
 	if request.method == 'POST' and 'btn_articles' in request.POST:
@@ -235,6 +244,7 @@ def want_articles(request, username):
 # 		'courses': courses, 'username': username, 'user_exist': user_exist})
 
 def registration(request):
+	errors = []
 	if request.user.is_authenticated:
 		redirect('account', request.user)
 	if request.method == 'POST':
@@ -242,13 +252,14 @@ def registration(request):
 		if form.is_valid():
 			form = form.save()
 			return render(request, 'registration_complete.html', {'form': form})
-	form = RegistrationForm()
+	else:
+		form = RegistrationForm()
 	return render(request, 'registration.html', {'form': form})
 
 def login_user(request):
+	errors = []
 	if request.user.is_authenticated:
 		return redirect('account', request.user)
-	errors = []
 	if request.method == 'POST':
 		form = LoginForm(request.POST)
 		username = request.POST.get('username')
@@ -258,8 +269,11 @@ def login_user(request):
 			if user.is_active:
 				login(request, user)
 				return redirect('account', request.user)
+		else:
+			errors.append("Данные не верны")
 	form = LoginForm()
-	return render(request, 'login.html', {'form': form})
+	return render(request, 'login.html', {'form': form,
+		'errors': errors})
 
 @login_required
 def logout_user(request):
