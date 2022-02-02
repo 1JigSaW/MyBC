@@ -9,16 +9,11 @@
 			<h1 class="text-center text-white p-2">Авторизация</h1>
 			<form method="POST">
 				{% csrf_token %}
-				{% if form.errors %}
-	   				{% for field in form %}
-	      				{% for error in field.errors %}
-	          				<h3 class="errors_password">{{ error|escape }}</h3>
-	      				{% endfor %}
-	   				{% endfor %}
+				{% if errors %}
+					{% for error in errors %}
+						<p class="text-danger">{{error}}</p>
+					{% endfor %}
 				{% endif %}
-				{% for message in messages %}
-					<p>{{message}}</p>
-				{% endfor %}
 			 	<div class="form-group w-50 offset-3 h5">
 			    	<label class="text-white p-2" for="Login">Логин</label>
 			    	{{ form.username }}

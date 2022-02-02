@@ -157,6 +157,13 @@ class RegistrationForm(UserCreationForm):
 			'class': 'form-control text-center', 'placeholder': 'Повторите пароль'
 			})
 
+	def save(self, commit=True):
+		user = super(UserCreationForm, self).save(commit=False)
+		user.set_password(self.cleaned_data['password1']) # важно тут передавать password1 или 2. Но не password как в примере выше
+		if commit:
+			user.save()
+		return user
+
 
 class LoginForm(AuthenticationForm):
 

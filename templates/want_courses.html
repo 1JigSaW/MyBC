@@ -19,7 +19,7 @@
 				<section class="common_field">
 			<div class="container">
 				<div class="alignment">
-					{% if user.is_authenticated %}
+					{% if user.is_authenticated and request.user == username %}
 						<div class="btn-group p-3 w-100">
 							<button id="redact" class="btn btn-outline-light btn_redact" onclick="redact()">Редактировать</button>
 							<button class="btn btn-outline-light btn_book" onclick="openForm()">Добавить книгу</button>
